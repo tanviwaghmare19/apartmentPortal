@@ -28,7 +28,7 @@
     <nav class="nav-menu">
       <a href="dashboard.html" class="nav-item active">Dashboard</a>
       <a href="flats.html" class="nav-item">Flats & Ledger</a>
-      <a href="parking.html" class="nav-item">Vehicle Parking</a>
+      <a href="vehicle.html" class="nav-item">Vehicle Parking</a>
       <a href="helpdesk.html" class="nav-item">Helpdesk</a>
       <a href="bookings.html" class="nav-item">Bookings</a>
       <a href="visitors.html" class="nav-item">Gatekeeper Log</a>
@@ -101,7 +101,7 @@
           <svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: #d97706;"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
           Society Digital Notice Board
         </div>
-        <button class="btn-orange" onclick="postNotice()">+ Post Notice</button>
+        <button class="btn-orange">+ Post Notice</button>
       </div>
       <div class="notice-card-box">
         <div class="notice-content">
@@ -115,12 +115,8 @@
     <!-- Action Buttons -->
     <div class="action-row">
       <div class="left-actions">
-        <button class="btn-green-action" onclick="collectMaintenance()">
-          Collect Maintenance
-        </button>
-        <button class="btn-red-action" onclick="addExpense()">
-          Add Expense
-        </button>
+        <button class="btn-green-action">Collect Maintenance</button>
+        <button class="btn-red-action">Add Expense</button>
       </div>
       <div class="right-actions">
         <button class="btn-outline">CSV Excel</button>
@@ -181,6 +177,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="dashboard.js"></script>
 </body>
 </html>
