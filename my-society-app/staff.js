@@ -6,6 +6,14 @@ let staffData = [
 
 window.onload = function() {
     renderStaff();
+    
+    // Load saved society name if available
+    const savedName = localStorage.getItem('societyName');
+    if (savedName) {
+        document.querySelectorAll('.societyNameText').forEach(el => {
+            el.textContent = savedName;
+        });
+    }
 };
 
 function renderStaff() {
@@ -26,11 +34,13 @@ function renderStaff() {
 }
 
 function openModal() {
-    document.getElementById('modal-staff').classList.remove('hidden');
+    const modal = document.getElementById('modal-staff');
+    if (modal) modal.classList.remove('hidden');
 }
 
 function closeModal() {
-    document.getElementById('modal-staff').classList.add('hidden');
+    const modal = document.getElementById('modal-staff');
+    if (modal) modal.classList.add('hidden');
 }
 
 function handleAddStaff(e) {
@@ -51,4 +61,30 @@ function handleAddStaff(e) {
     document.getElementById('staff-name').value = '';
     document.getElementById('staff-role').value = '';
     document.getElementById('staff-phone').value = '';
+}
+
+// --- Edit Society Name Functions ---
+function openEditModal() {
+    const modal = document.getElementById('editModal');
+    if (modal) modal.classList.remove('hidden');
+}
+
+function closeEditModal() {
+    const modal = document.getElementById('editModal');
+    if (modal) modal.classList.add('hidden');
+}
+
+function saveSocietyName() {
+    const input = document.getElementById('societyInput');
+    const newName = input ? input.value.trim() : '';
+    if (newName) {
+        localStorage.setItem('societyName', newName);
+        document.querySelectorAll('.societyNameText').forEach(el => {
+            el.textContent = newName;
+        });
+        closeEditModal();
+        input.value = '';
+    } else {
+        alert('Please enter a valid society name');
+    }
 }

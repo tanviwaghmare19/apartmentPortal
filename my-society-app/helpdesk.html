@@ -3,37 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canary Enterprise - Helpdesk & Resident Chat</title>
+    <title>Gokul Dham Society - Helpdesk & Resident Chat</title>
     <!-- FontAwesome Icons CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Link Dedicated CSS -->
-    <link rel="stylesheet" href="helpdesk.css">
+    <link rel="stylesheet" href="./helpdesk.css">
 </head>
 <body>
 
     <!-- TOP NAVIGATION BAR -->
-    <header class="app-header">
-        <div class="logo-area">
-            <div class="logo-icon"><i class="fa-solid fa-building"></i></div>
-            <div>
-                <div class="title-row">
-                    <h1>Gokul Dham Society</h1>
-                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+    <header class="app-header navbar">
+        <div class="logo-area nav-left">
+            <div class="logo-icon">
+                <i class="fa-solid fa-building"></i>
+            </div>
+            <div class="brand-info">
+                <div class="title-row brand-title-row">
+                    <h1 class="societyNameText" style="font-size: 16px; font-weight: bold;">Gokul Dham Society</h1>
+                    <button class="edit-btn" onclick="openEditModal()" title="Edit Name">
+                        <svg class="icon" viewBox="0 0 24 24" style="width: 11px; height: 11px; fill: currentColor;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                    </button>
                 </div>
-                <span class="subtitle">Admin Management Portal</span>
+                <p class="subtitle">Admin Management Portal</p>
             </div>
         </div>
 
-        <div class="nav-links">
-            <a href="dashboard.html" class="nav-btn"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
-            <a href="flats.html" class="nav-btn"><i class="fa-solid fa-building-user"></i> Flats & Ledger</a>
-            <a href="parking.html" class="nav-btn"><i class="fa-solid fa-car"></i> Vehicle Parking</a>
-            <a href="helpdesk.html" class="nav-btn active"><i class="fa-solid fa-headset"></i> Helpdesk</a>
-            <a href="bookings.html" class="nav-btn"><i class="fa-solid fa-umbrella-beach"></i> Bookings</a>
-            <a href="visitors.html" class="nav-btn"><i class="fa-solid fa-shield-halved"></i> Gatekeeper Log</a>
-            <a href="staff.html" class="nav-btn"><i class="fa-solid fa-id-card"></i> Staff Directory</a>
-            <button class="bell-btn"><i class="fa-solid fa-bell"></i><span class="badge">3</span></button>
-            <a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <nav class="nav-links nav-menu">
+            <a href="dashboard.html" class="nav-btn nav-item">Dashboard</a>
+            <a href="flats.html" class="nav-btn nav-item">Flats & Ledger</a>
+            <a href="vehicle.html" class="nav-btn nav-item">Vehicle Parking</a>
+            <a href="helpdesk.html" class="nav-btn nav-item active">Helpdesk</a>
+            <a href="bookings.html" class="nav-btn nav-item">Bookings</a>
+            <a href="visitors.html" class="nav-btn nav-item">Gatekeeper Log</a>
+            <a href="staff.html" class="nav-btn nav-item">Staff Directory</a>
+        </nav>
+
+        <div style="display: flex; align-items: center;" class="nav-right">
+            <a href="#" class="bell-btn notification-icon">
+                <i class="fa-solid fa-bell"></i>
+                <span class="badge">3</span>
+            </a>
+            <a href="index.html" class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
         </div>
     </header>
 
@@ -92,6 +104,18 @@
                     <button type="submit" class="submit-btn">Submit Ticket</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Edit Society Name Modal -->
+    <div class="modal-overlay hidden" id="editModal">
+        <div class="modal-card">
+            <h3>Edit Society Name</h3>
+            <input type="text" id="societyInput" placeholder="Enter new society name">
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
+                <button class="btn-update" onclick="saveSocietyName()">Update Name</button>
+            </div>
         </div>
     </div>
 

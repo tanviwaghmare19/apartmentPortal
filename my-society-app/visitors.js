@@ -5,6 +5,14 @@ let visitorsData = [
 
 window.onload = function() {
     renderVisitors();
+    
+    // Load saved society name if available
+    const savedName = localStorage.getItem('societyName');
+    if (savedName) {
+        document.querySelectorAll('.societyNameText').forEach(el => {
+            el.textContent = savedName;
+        });
+    }
 };
 
 function renderVisitors() {
@@ -25,11 +33,13 @@ function renderVisitors() {
 }
 
 function openModal() {
-    document.getElementById('modal-visitor').classList.remove('hidden');
+    const modal = document.getElementById('modal-visitor');
+    if (modal) modal.classList.remove('hidden');
 }
 
 function closeModal() {
-    document.getElementById('modal-visitor').classList.add('hidden');
+    const modal = document.getElementById('modal-visitor');
+    if (modal) modal.classList.add('hidden');
 }
 
 function handleAddVisitor(e) {
@@ -58,4 +68,30 @@ function handleAddVisitor(e) {
     document.getElementById('vis-flat').value = '';
     document.getElementById('vis-vehicle').value = '';
     document.getElementById('vis-time').value = '';
+}
+
+/* --- Edit Society Name Functions --- */
+function openEditModal() {
+    const modal = document.getElementById('editModal');
+    if (modal) modal.classList.remove('hidden');
+}
+
+function closeEditModal() {
+    const modal = document.getElementById('editModal');
+    if (modal) modal.classList.add('hidden');
+}
+
+function saveSocietyName() {
+    const input = document.getElementById('societyInput');
+    const newName = input ? input.value.trim() : '';
+    if (newName) {
+        localStorage.setItem('societyName', newName);
+        document.querySelectorAll('.societyNameText').forEach(el => {
+            el.textContent = newName;
+        });
+        closeEditModal();
+        input.value = '';
+    } else {
+        alert('Please enter a valid society name');
+    }
 }

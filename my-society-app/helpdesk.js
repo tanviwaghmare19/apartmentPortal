@@ -13,6 +13,14 @@ let chatMessagesData = [
 window.onload = function() {
     renderComplaints();
     renderChatMessages();
+    
+    // Load saved society name if available
+    const savedName = localStorage.getItem('societyName');
+    if (savedName) {
+        document.querySelectorAll('.societyNameText').forEach(el => {
+            el.textContent = savedName;
+        });
+    }
 };
 
 function renderComplaints() {
@@ -88,9 +96,37 @@ function handleAddComplaint(e) {
 }
 
 function openModal(id) {
-    document.getElementById(id).classList.remove('hidden');
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('hidden');
 }
 
 function closeModal(id) {
-    document.getElementById(id).classList.add('hidden');
+    const el = document.getElementById(id);
+    if (el) el.classList.add('hidden');
+}
+
+/* --- Edit Society Name Functions --- */
+function openEditModal() {
+    const modal = document.getElementById('editModal');
+    if (modal) modal.classList.remove('hidden');
+}
+
+function closeEditModal() {
+    const modal = document.getElementById('editModal');
+    if (modal) modal.classList.add('hidden');
+}
+
+function saveSocietyName() {
+    const input = document.getElementById('societyInput');
+    const newName = input ? input.value.trim() : '';
+    if (newName) {
+        localStorage.setItem('societyName', newName);
+        document.querySelectorAll('.societyNameText').forEach(el => {
+            el.textContent = newName;
+        });
+        closeEditModal();
+        input.value = '';
+    } else {
+        alert('Please enter a valid society name');
+    }
 }

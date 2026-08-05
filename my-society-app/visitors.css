@@ -12,7 +12,7 @@ body {
 }
 
 /* Header Styles */
-.app-header {
+.navbar {
     background-color: #0f172a;
     color: #ffffff;
     padding: 14px 24px;
@@ -26,53 +26,69 @@ body {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.logo-area {
+.nav-left {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.logo-icon {
+.logo-box {
     background-color: #2563eb;
     padding: 9px 11px;
     border-radius: 8px;
     color: white;
-    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.title-row {
+.icon {
+    fill: currentColor;
+}
+
+.brand-title-row {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.title-row h1 {
+.brand-info h3 {
     font-size: 16px;
     font-weight: bold;
 }
 
-.edit-btn {
-    background-color: #1e293b;
-    color: #94a3b8;
-    border: 1px solid #334155;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 10px;
-    cursor: pointer;
-}
-
-.subtitle {
+.brand-info p {
     font-size: 11px;
     color: #94a3b8;
 }
 
-.nav-links {
+/* Edit Button Style */
+.edit-btn {
+    background-color: #1e293b;
+    color: #94a3b8;
+    border: 1px solid #334155;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.edit-btn:hover {
+    background-color: #334155;
+    color: #ffffff;
+}
+
+.nav-menu {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-.nav-btn {
+.nav-item {
     font-size: 11px;
     font-weight: 600;
     padding: 6px 12px;
@@ -83,32 +99,43 @@ body {
     border: 1px solid #334155;
     transition: 0.2s;
     white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 5px;
 }
 
-.nav-btn:hover, .nav-btn.active {
+.nav-item:hover, .nav-item.active {
     background-color: #2563eb;
     color: #ffffff;
 }
 
-.nav-btn.warning {
-    border-color: rgba(245, 158, 11, 0.5);
-    color: #fde047;
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.bell-btn, .logout-btn {
+.notification-icon {
     background-color: #1e293b;
     color: #cbd5e1;
     border: 1px solid #334155;
-    padding: 6px 10px;
+    padding: 8px 10px;
     border-radius: 8px;
     cursor: pointer;
     position: relative;
-    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-btn {
+    background-color: #1e293b;
+    color: #cbd5e1;
+    border: 1px solid #334155;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
     text-decoration: none;
-    margin-left: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .badge {
@@ -302,4 +329,74 @@ body {
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
+}
+
+/* Edit Society Name Modal Specific Styles */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 400px;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-card h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e293b;
+}
+
+.modal-card input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #3b82f6;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    color: #1e293b;
+}
+
+.btn-cancel {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 12px;
+}
+
+.btn-update {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-update:hover {
+    background-color: #1d4ed8;
 }

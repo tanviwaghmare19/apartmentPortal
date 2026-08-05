@@ -51,14 +51,24 @@ body {
     font-weight: bold;
 }
 
+/* Edit Button Style */
 .edit-btn {
     background-color: #1e293b;
     color: #94a3b8;
     border: 1px solid #334155;
-    padding: 2px 6px;
+    padding: 3px 6px;
     border-radius: 4px;
     font-size: 10px;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.edit-btn:hover {
+    background-color: #334155;
+    color: #ffffff;
 }
 
 .subtitle {
@@ -109,6 +119,9 @@ body {
     font-size: 12px;
     text-decoration: none;
     margin-left: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .badge {
@@ -437,4 +450,74 @@ body {
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
+}
+
+/* Edit Society Name Modal Specific Styles */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 400px;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-card h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1e293b;
+}
+
+.modal-card input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #3b82f6;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    color: #1e293b;
+}
+
+.btn-cancel {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 12px;
+}
+
+.btn-update {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-update:hover {
+    background-color: #1d4ed8;
 }

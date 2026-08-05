@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canary Enterprise - Clubhouse & Amenity Booking</title>
+    <title>Gokul Dham Society - Clubhouse & Amenity Booking</title>
     <!-- FontAwesome Icons CDN -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Link CSS (Same folder) -->
@@ -12,28 +12,40 @@
 <body>
 
     <!-- TOP NAVIGATION BAR -->
-    <header class="app-header">
-        <div class="logo-area">
-            <div class="logo-icon"><i class="fa-solid fa-building"></i></div>
-            <div>
-                <div class="title-row">
-                    <h1>Gokul Dham Society</h1>
-                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="logo-box">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V18z"/></svg>
+            </div>
+            <div class="brand-info">
+                <div class="brand-title-row">
+                    <h3 class="societyNameText">Gokul Dham Society</h3>
+                    <button class="edit-btn" onclick="openEditModal()" title="Edit Name">
+                        <svg class="icon" viewBox="0 0 24 24" style="width: 11px; height: 11px;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                    </button>
                 </div>
-                <span class="subtitle">Admin Management Portal</span>
+                <p>Admin Management Portal</p>
             </div>
         </div>
 
-        <div class="nav-links">
-            <a href="dashboard.html" class="nav-btn"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
-            <a href="flats.html" class="nav-btn"><i class="fa-solid fa-building-user"></i> Flats & Ledger</a>
-            <a href="parking.html" class="nav-btn"><i class="fa-solid fa-car"></i> Vehicle Parking</a>
-            <a href="helpdesk.html" class="nav-btn"><i class="fa-solid fa-headset"></i> Helpdesk</a>
-            <a href="bookings.html" class="nav-btn active"><i class="fa-solid fa-umbrella-beach"></i> Bookings</a>
-            <a href="visitors.html" class="nav-btn warning"><i class="fa-solid fa-shield-halved"></i> Gatekeeper Log</a>
-            <a href="staff.html" class="nav-btn"><i class="fa-solid fa-id-card"></i> Staff Directory</a>
-            <button class="bell-btn"><i class="fa-solid fa-bell"></i><span class="badge">3</span></button>
-            <a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <nav class="nav-menu">
+            <a href="dashboard.html" class="nav-item">Dashboard</a>
+            <a href="flats.html" class="nav-item">Flats & Ledger</a>
+            <a href="vehicle.html" class="nav-item">Vehicle Parking</a>
+            <a href="helpdesk.html" class="nav-item">Helpdesk</a>
+            <a href="bookings.html" class="nav-item active">Bookings</a>
+            <a href="visitors.html" class="nav-item">Gatekeeper Log</a>
+            <a href="staff.html" class="nav-item">Staff Directory</a>
+        </nav>
+
+        <div class="nav-right">
+            <div class="notification-icon">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 15px; height: 15px;"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+                <span class="badge">3</span>
+            </div>
+            <a href="index.html" class="logout-btn">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 14px; height: 14px;"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59z"/></svg>
+            </a>
         </div>
     </header>
 
@@ -115,6 +127,18 @@
                     <button type="submit" class="submit-btn">Confirm Booking</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Edit Society Name Modal -->
+    <div class="modal-overlay hidden" id="editModal">
+        <div class="modal-card">
+            <h3>Edit Society Name</h3>
+            <input type="text" id="societyInput" placeholder="Enter new society name">
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
+                <button class="btn-update" onclick="saveSocietyName()">Update Name</button>
+            </div>
         </div>
     </div>
 
