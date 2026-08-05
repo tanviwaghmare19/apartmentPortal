@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canary Enterprise - Helpdesk & Resident Chat</title>
+    <!-- FontAwesome Icons CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Link Dedicated CSS -->
+    <link rel="stylesheet" href="helpdesk.css">
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="app-header">
+        <div class="logo-area">
+            <div class="logo-icon"><i class="fa-solid fa-building"></i></div>
+            <div>
+                <div class="title-row">
+                    <h1>Gokul Dham Society</h1>
+                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                </div>
+                <span class="subtitle">Admin Management Portal</span>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-btn"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+            <a href="flats.html" class="nav-btn"><i class="fa-solid fa-building-user"></i> Flats & Ledger</a>
+            <a href="parking.html" class="nav-btn"><i class="fa-solid fa-car"></i> Vehicle Parking</a>
+            <a href="helpdesk.html" class="nav-btn active"><i class="fa-solid fa-headset"></i> Helpdesk</a>
+            <a href="bookings.html" class="nav-btn"><i class="fa-solid fa-umbrella-beach"></i> Bookings</a>
+            <a href="visitors.html" class="nav-btn"><i class="fa-solid fa-shield-halved"></i> Gatekeeper Log</a>
+            <a href="staff.html" class="nav-btn"><i class="fa-solid fa-id-card"></i> Staff Directory</a>
+            <button class="bell-btn"><i class="fa-solid fa-bell"></i><span class="badge">3</span></button>
+            <a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+        <div class="grid-layout">
+            
+            <!-- Left Column: Complaints & Tickets -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2>Society Complaints & Ticket System</h2>
+                        <p>Track & resolve resident issues</p>
+                    </div>
+                    <button onclick="openModal('modal-add-complaint')" class="primary-btn">+ Log New Issue</button>
+                </div>
+
+                <div class="complaints-list" id="complaints-list-container">
+                    <!-- Dynamic Items -->
+                </div>
+            </div>
+
+            <!-- Right Column: Resident Open Chat -->
+            <div class="card chat-card">
+                <div class="chat-header">
+                    <div class="chat-title-area">
+                        <h3><i class="fa-solid fa-comments chat-icon"></i> Resident Open Chat</h3>
+                        <span class="live-badge">Live Discussion</span>
+                    </div>
+                    <p class="chat-subtitle">Admin available na ho toh aapas mein discuss karein</p>
+                </div>
+
+                <div class="chat-messages" id="chat-messages-box">
+                    <!-- Dynamic Messages -->
+                </div>
+
+                <form onsubmit="handleSendChatMessage(event)" class="chat-form">
+                    <input type="text" id="chat-input-msg" placeholder="Write a message to neighbors..." required>
+                    <button type="submit" class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal: Add Complaint -->
+    <div id="modal-add-complaint" class="modal hidden">
+        <div class="modal-content">
+            <h3>Log New Helpdesk Ticket</h3>
+            <form onsubmit="handleAddComplaint(event)" class="modal-form">
+                <input type="text" id="comp-flat" placeholder="Flat No (e.g. Flat 203)" required>
+                <input type="text" id="comp-title" placeholder="Issue Title (e.g. Corridor Light Fault)" required>
+                <textarea id="comp-desc" placeholder="Details..." rows="3" required></textarea>
+                <div class="modal-actions">
+                    <button type="button" onclick="closeModal('modal-add-complaint')" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Submit Ticket</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Link JS -->
+    <script src="helpdesk.js"></script>
+</body>
+</html>

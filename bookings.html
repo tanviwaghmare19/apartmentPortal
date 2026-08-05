@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canary Enterprise - Clubhouse & Amenity Booking</title>
+    <!-- FontAwesome Icons CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Link CSS (Same folder) -->
+    <link rel="stylesheet" href="bookings.css">
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="app-header">
+        <div class="logo-area">
+            <div class="logo-icon"><i class="fa-solid fa-building"></i></div>
+            <div>
+                <div class="title-row">
+                    <h1>Gokul Dham Society</h1>
+                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                </div>
+                <span class="subtitle">Admin Management Portal</span>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-btn"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+            <a href="flats.html" class="nav-btn"><i class="fa-solid fa-building-user"></i> Flats & Ledger</a>
+            <a href="parking.html" class="nav-btn"><i class="fa-solid fa-car"></i> Vehicle Parking</a>
+            <a href="helpdesk.html" class="nav-btn"><i class="fa-solid fa-headset"></i> Helpdesk</a>
+            <a href="bookings.html" class="nav-btn active"><i class="fa-solid fa-umbrella-beach"></i> Bookings</a>
+            <a href="visitors.html" class="nav-btn warning"><i class="fa-solid fa-shield-halved"></i> Gatekeeper Log</a>
+            <a href="staff.html" class="nav-btn"><i class="fa-solid fa-id-card"></i> Staff Directory</a>
+            <button class="bell-btn"><i class="fa-solid fa-bell"></i><span class="badge">3</span></button>
+            <a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+        <div class="card">
+            <h2 class="page-title">Clubhouse & Amenity Booking</h2>
+            <p class="page-desc">Reserve society common facilities for private events (Payment goes to Admin)</p>
+
+            <!-- Amenities Grid Cards -->
+            <div class="amenities-grid">
+                <div class="amenity-box">
+                    <div>
+                        <div class="amenity-icon icon-purple"><i class="fa-solid fa-champagne-glasses"></i></div>
+                        <h3>Community Hall</h3>
+                        <p>₹1,500 / day • 150 Capacity</p>
+                    </div>
+                    <button onclick="openModal('Community Hall')" class="book-btn btn-purple">Book Slot</button>
+                </div>
+
+                <div class="amenity-box">
+                    <div>
+                        <div class="amenity-icon icon-blue"><i class="fa-solid fa-water-ladder"></i></div>
+                        <h3>Swimming Pool Poolside</h3>
+                        <p>₹800 / day • Private Evening</p>
+                    </div>
+                    <button onclick="openModal('Swimming Pool Poolside')" class="book-btn btn-blue">Book Slot</button>
+                </div>
+
+                <div class="amenity-box">
+                    <div>
+                        <div class="amenity-icon icon-emerald"><i class="fa-solid fa-table-tennis-paddle-ball"></i></div>
+                        <h3>Badminton Court</h3>
+                        <p>Free for Residents • Slot Booking</p>
+                    </div>
+                    <button onclick="openModal('Badminton Court')" class="book-btn btn-emerald">Book Slot</button>
+                </div>
+
+                <div class="amenity-box">
+                    <div>
+                        <div class="amenity-icon icon-amber"><i class="fa-solid fa-house-chimney-user"></i></div>
+                        <h3>Guest House Room</h3>
+                        <p>₹1,000 / night • AC Suite</p>
+                    </div>
+                    <button onclick="openModal('Guest House Room')" class="book-btn btn-amber">Book Slot</button>
+                </div>
+            </div>
+
+            <!-- Active Reservations Table -->
+            <h3 class="section-title">Active Amenity Reservations</h3>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Amenity</th>
+                            <th>Booked By</th>
+                            <th>Date Slot</th>
+                            <th style="text-align: right;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="amenities-booking-table">
+                        <!-- Dynamic Rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal: Book Amenity -->
+    <div id="modal-book-amenity" class="modal hidden">
+        <div class="modal-content">
+            <h3>Reserve Amenity Slot</h3>
+            <form onsubmit="handleBookAmenity(event)" class="modal-form">
+                <input type="text" id="book-amenity-name" readonly style="background-color: #f1f5f9; font-weight: bold;">
+                <input type="text" id="book-flat" placeholder="Flat No (e.g. Flat 104)" required>
+                <input type="date" id="book-date" required>
+                <div class="modal-actions">
+                    <button type="button" onclick="closeModal()" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Confirm Booking</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Link JS -->
+    <script src="bookings.js"></script>
+</body>
+</html>

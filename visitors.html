@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canary Enterprise - Gatekeeper Visitor Log</title>
+    <!-- FontAwesome Icons CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="visitors.css">
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="app-header">
+        <div class="logo-area">
+            <div class="logo-icon"><i class="fa-solid fa-building"></i></div>
+            <div>
+                <div class="title-row">
+                    <h1>Gokul Dham Society</h1>
+                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                </div>
+                <span class="subtitle">Admin Management Portal</span>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-btn"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+            <a href="flats.html" class="nav-btn"><i class="fa-solid fa-building-user"></i> Flats & Ledger</a>
+            <a href="parking.html" class="nav-btn"><i class="fa-solid fa-car"></i> Vehicle Parking</a>
+            <a href="helpdesk.html" class="nav-btn"><i class="fa-solid fa-headset"></i> Helpdesk</a>
+            <a href="bookings.html" class="nav-btn"><i class="fa-solid fa-umbrella-beach"></i> Bookings</a>
+            <a href="visitors.html" class="nav-btn warning"><i class="fa-solid fa-shield-halved"></i> Gatekeeper Log</a>
+            <a href="staff.html" class="nav-btn"><i class="fa-solid fa-id-card"></i> Staff Directory</a>
+            <button class="bell-btn"><i class="fa-solid fa-bell"></i><span class="badge">3</span></button>
+            <a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+        <div class="card">
+            <div class="card-header-flex">
+                <div>
+                    <h2 class="page-title">Gatekeeper Visitor Log</h2>
+                    <p class="page-desc">Real-time gate security entry & approval tracking</p>
+                </div>
+                <button onclick="openModal()" class="primary-btn">+ New Entry</button>
+            </div>
+
+            <!-- Visitor Log Table -->
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Visitor Name</th>
+                            <th>Role / Service</th>
+                            <th>Visiting Flat</th>
+                            <th>Vehicle No</th>
+                            <th>Time In</th>
+                            <th style="text-align: right;">Approval Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="visitors-table-body">
+                        <!-- Dynamic Rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal: New Visitor Entry -->
+    <div id="modal-visitor" class="modal hidden">
+        <div class="modal-content">
+            <h3>Add New Visitor Entry</h3>
+            <form onsubmit="handleAddVisitor(event)" class="modal-form">
+                <input type="text" id="vis-name" placeholder="Visitor Name (e.g. Rahul Singh)" required>
+                <input type="text" id="vis-role" placeholder="Role / Service (e.g. Swiggy Delivery)" required>
+                <input type="text" id="vis-flat" placeholder="Visiting Flat (e.g. Flat 101)" required>
+                <input type="text" id="vis-vehicle" placeholder="Vehicle No (e.g. MH-31 EV-2020)" required>
+                <input type="text" id="vis-time" placeholder="Time In (e.g. 10:30 AM)" required>
+                <div class="modal-actions">
+                    <button type="button" onclick="closeModal()" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Save Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Link JS -->
+    <script src="visitors.js"></script>
+</body>
+</html>

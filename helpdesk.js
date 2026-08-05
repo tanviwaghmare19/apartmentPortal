@@ -1,0 +1,96 @@
+let complaintsData = [
+    { flat: "Flat 302", title: "Water Leakage in Bathroom", desc: "Main pipe leaking near shaft", status: "Pending", statusClass: "status-pending" },
+    { flat: "Flat 104", title: "Lift Sound Fault", desc: "Grinding noise on 2nd floor", status: "In Progress", statusClass: "status-progress" },
+    { flat: "Flat 201", title: "Passage Bulb Fuse", desc: "Bulb replaced by electrician", status: "Resolved", statusClass: "status-resolved" }
+];
+
+let chatMessagesData = [
+    { sender: "Flat 302", text: "Water leakage ki vajah se 3rd floor par paani ruk raha hai.", time: "10:15 AM" },
+    { sender: "Flat 104", text: "Electrician/Plumber kab tak aayenge?", time: "10:20 AM" },
+    { sender: "Flat 201", text: "Plumber ka contact number Staff Payroll tab mein available hai waha se call kar sakte ho.", time: "10:25 AM" }
+];
+
+window.onload = function() {
+    renderComplaints();
+    renderChatMessages();
+};
+
+function renderComplaints() {
+    const list = document.getElementById('complaints-list-container');
+    if (!list) return;
+    list.innerHTML = '';
+    complaintsData.forEach(c => {
+        list.innerHTML += `
+            <div class="complaint-item">
+                <div class="complaint-info">
+                    <span class="flat-tag">${c.flat}</span>
+                    <h4>${c.title}</h4>
+                    <p>${c.desc}</p>
+                </div>
+                <span class="status-badge ${c.statusClass}">${c.status}</span>
+            </div>`;
+    });
+}
+
+function renderChatMessages() {
+    const box = document.getElementById('chat-messages-box');
+    if (!box) return;
+    box.innerHTML = '';
+    chatMessagesData.forEach(msg => {
+        box.innerHTML += `
+            <div class="chat-msg">
+                <div class="msg-top">
+                    <span class="msg-sender">${msg.sender}</span>
+                    <span class="msg-time">${msg.time}</span>
+                </div>
+                <p>${msg.text}</p>
+            </div>
+        `;
+    });
+    box.scrollTop = box.scrollHeight;
+}
+
+function handleSendChatMessage(e) {
+    e.preventDefault();
+    const input = document.getElementById('chat-input-msg');
+    const msgText = input.value.trim();
+    if (!msgText) return;
+
+    chatMessagesData.push({
+        sender: "Admin / Secretary",
+        text: msgText,
+        time: "Just Now"
+    });
+
+    renderChatMessages();
+    input.value = '';
+}
+
+function handleAddComplaint(e) {
+    e.preventDefault();
+    const flatVal = document.getElementById('comp-flat').value;
+    const titleVal = document.getElementById('comp-title').value;
+    const descVal = document.getElementById('comp-desc').value;
+
+    complaintsData.unshift({
+        flat: flatVal,
+        title: titleVal,
+        desc: descVal,
+        status: 'Pending',
+        statusClass: 'status-pending'
+    });
+
+    renderComplaints();
+    closeModal('modal-add-complaint');
+    document.getElementById('comp-flat').value = '';
+    document.getElementById('comp-title').value = '';
+    document.getElementById('comp-desc').value = '';
+}
+
+function openModal(id) {
+    document.getElementById(id).classList.remove('hidden');
+}
+
+function closeModal(id) {
+    document.getElementById(id).classList.add('hidden');
+}

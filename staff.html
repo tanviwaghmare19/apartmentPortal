@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canary Enterprise - Society Staff Directory</title>
+    <!-- FontAwesome Icons CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="staff.css">
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="app-header">
+        <div class="logo-area">
+            <div class="logo-icon"><i class="fa-solid fa-building"></i></div>
+            <div>
+                <div class="title-row">
+                    <h1>Gokul Dham Society</h1>
+                    <button class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                </div>
+                <span class="subtitle">Admin Management Portal</span>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html" class="nav-btn"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+            <a href="flats.html" class="nav-btn"><i class="fa-solid fa-building-user"></i> Flats & Ledger</a>
+            <a href="parking.html" class="nav-btn"><i class="fa-solid fa-car"></i> Vehicle Parking</a>
+            <a href="helpdesk.html" class="nav-btn"><i class="fa-solid fa-headset"></i> Helpdesk</a>
+            <a href="bookings.html" class="nav-btn"><i class="fa-solid fa-umbrella-beach"></i> Bookings</a>
+            <a href="visitors.html" class="nav-btn warning"><i class="fa-solid fa-shield-halved"></i> Gatekeeper Log</a>
+            <a href="staff.html" class="nav-btn active"><i class="fa-solid fa-id-card"></i> Staff Directory</a>
+            <button class="bell-btn"><i class="fa-solid fa-bell"></i><span class="badge">3</span></button>
+            <a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+        <div class="card">
+            <div class="card-header-flex">
+                <div>
+                    <h2 class="page-title">Society Staff Directory</h2>
+                    <p class="page-desc">Watchman, Sweeper, Plumber, Electrician contact numbers</p>
+                </div>
+                <button onclick="openModal()" class="primary-btn">+ Add New Staff</button>
+            </div>
+
+            <!-- Staff Grid Cards Container -->
+            <div class="staff-grid" id="staff-grid-container">
+                <!-- Dynamic Cards -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal: Add New Staff -->
+    <div id="modal-staff" class="modal hidden">
+        <div class="modal-content">
+            <h3>Add New Society Staff</h3>
+            <form onsubmit="handleAddStaff(event)" class="modal-form">
+                <input type="text" id="staff-name" placeholder="Staff Name (e.g. Ramesh Kumar)" required>
+                <input type="text" id="staff-role" placeholder="Role / Designation (e.g. On-Call Plumber)" required>
+                <input type="text" id="staff-phone" placeholder="Phone Number (e.g. +91 9876543210)" required>
+                <div class="modal-actions">
+                    <button type="button" onclick="closeModal()" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="submit-btn">Add Staff</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Link JS -->
+    <script src="staff.js"></script>
+</body>
+</html>
