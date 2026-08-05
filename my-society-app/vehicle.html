@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gokul Dham Society - Vehicle Parking</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: #f1f5f9; color: #334155; }
+    .icon { width: 14px; height: 14px; fill: currentColor; display: inline-block; vertical-align: middle; }
+
+    /* Navbar */
+    .navbar { background-color: #0b1329; color: #ffffff; display: flex; align-items: center; justify-content: space-between; padding: 10px 24px; }
+    .nav-left { display: flex; align-items: center; gap: 12px; }
+    .logo-box { width: 34px; height: 34px; background-color: #2563eb; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; }
+    .brand-info h3 { font-size: 14px; font-weight: 700; color: #ffffff; display: flex; align-items: center; gap: 8px; line-height: 1.2; }
+    .edit-btn { background-color: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); cursor: pointer; color: #cbd5e1; width: 24px; height: 24px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; }
+    .brand-info p { font-size: 11px; color: #64748b; font-weight: 400; }
+    .nav-menu { display: flex; align-items: center; gap: 4px; }
+    .nav-item { color: #94a3b8; text-decoration: none; font-size: 12px; padding: 7px 14px; border-radius: 8px; display: flex; align-items: center; gap: 7px; font-weight: 500; }
+    .nav-item.active { background-color: #2563eb; color: #ffffff; }
+    
+    /* Bell Badge Overlap */
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .notification-icon { position: relative; background-color: #1e293b; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.05); }
+    .notification-icon .badge { position: absolute; top: -3px; right: -3px; background-color: #ef4444; color: #ffffff; font-size: 10px; font-weight: 700; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; line-height: 1; }
+    .logout-btn { background-color: #1e293b; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.05); }
+
+    .main-container { padding: 20px; max-width: 1350px; margin: 0 auto; }
+    .table-card { background-color: #ffffff; border-radius: 12px; padding: 20px; border: 1px solid #e2e8f0; }
+    table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 15px; }
+    th { font-size: 11px; font-weight: 700; color: #64748b; padding: 10px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; }
+    td { padding: 12px 10px; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
+
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 999; }
+    .modal-overlay.active { display: flex; }
+    .modal-card { background: #ffffff; width: 100%; max-width: 400px; border-radius: 16px; padding: 24px; }
+    .modal-card input { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; margin: 15px 0 20px 0; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 12px; }
+    .btn-cancel { background: none; border: none; color: #64748b; font-weight: 600; cursor: pointer; }
+    .btn-update { background-color: #2563eb; color: white; border: none; padding: 9px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="nav-left">
+      <div class="logo-box">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V18z"/></svg>
+      </div>
+      <div class="brand-info">
+        <h3>
+          <span class="societyNameText">Gokul Dham Society</span>
+          <button class="edit-btn" onclick="openEditModal()" title="Edit Name">
+            <svg class="icon" viewBox="0 0 24 24" style="width: 12px; height: 12px;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+          </button>
+        </h3>
+        <p>Admin Management Portal</p>
+      </div>
+    </div>
+
+    <nav class="nav-menu">
+      <a href="dashboard.html" class="nav-item">Dashboard</a>
+      <a href="flats.html" class="nav-item">Flats & Ledger</a>
+      <a href="vehicle.html" class="nav-item active">Vehicle Parking</a>
+      <a href="#" class="nav-item">Helpdesk</a>
+      <a href="#" class="nav-item">Bookings</a>
+      <a href="#" class="nav-item">Gatekeeper Log</a>
+      <a href="#" class="nav-item">Staff Directory</a>
+    </nav>
+
+    <div class="nav-right">
+      <div class="notification-icon">
+        <svg class="icon" viewBox="0 0 24 24" style="width: 15px; height: 15px;"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+        <span class="badge">3</span>
+      </div>
+      <a href="#" class="logout-btn">
+        <svg class="icon" viewBox="0 0 24 24" style="width: 14px; height: 14px;"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <div class="table-card">
+      <h2>Vehicle Parking Registry</h2>
+      <table>
+        <thead><tr><th>SLOT NO</th><th>VEHICLE NO</th><th>OWNER</th><th>TYPE</th></tr></thead>
+        <tbody>
+          <tr><td>P-01</td><td>MH 02 AB 1234</td><td>Jethalal Gada</td><td>4-Wheeler (Car)</td></tr>
+          <tr><td>P-02</td><td>MH 02 CD 5678</td><td>Atmaram Bhide</td><td>2-Wheeler (Scooter)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="editModal">
+    <div class="modal-card">
+      <h3>Edit Society Name</h3>
+      <input type="text" id="societyInput" placeholder="Enter new society name">
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
+        <button class="btn-update" onclick="saveSocietyName()">Update Name</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const savedName = localStorage.getItem("societyName");
+      if (savedName) {
+        document.querySelectorAll(".societyNameText").forEach(el => el.innerText = savedName);
+      }
+    });
+
+    function openEditModal() {
+      const currentName = document.querySelector('.societyNameText').innerText;
+      document.getElementById('societyInput').value = currentName;
+      document.getElementById('editModal').classList.add('active');
+    }
+
+    function closeEditModal() {
+      document.getElementById('editModal').classList.remove('active');
+    }
+
+    function saveSocietyName() {
+      const newName = document.getElementById('societyInput').value.trim();
+      if (newName !== "") {
+        document.querySelectorAll('.societyNameText').forEach(el => el.innerText = newName);
+        localStorage.setItem("societyName", newName);
+      }
+      closeEditModal();
+    }
+  </script>
+</body>
+</html>
