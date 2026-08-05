@@ -1,71 +1,59 @@
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Edit Society Name Modal Logic
-  const editSocietyBtn = document.getElementById('editSocietyBtn');
-  const editModal = document.getElementById('editModal');
-  const cancelModalBtn = document.getElementById('cancelModalBtn');
-  const updateNameBtn = document.getElementById('updateNameBtn');
-  const newSocietyNameInput = document.getElementById('newSocietyNameInput');
-  const societyNameText = document.getElementById('societyNameText');
-
-  if (editSocietyBtn) {
-    editSocietyBtn.addEventListener('click', () => {
-      newSocietyNameInput.value = societyNameText.textContent;
-      editModal.classList.remove('hidden');
-    });
-  }
-
-  if (cancelModalBtn) {
-    cancelModalBtn.addEventListener('click', () => {
-      editModal.classList.add('hidden');
-    });
-  }
-
-  if (updateNameBtn) {
-    updateNameBtn.addEventListener('click', () => {
-      const updatedName = newSocietyNameInput.value.trim();
-      if (updatedName !== '') {
-        societyNameText.textContent = updatedName;
-        editModal.classList.add('hidden');
-      } else {
-        alert('Please enter a valid society name!');
-      }
-    });
-  }
-
-  if (editModal) {
-    editModal.addEventListener('click', (e) => {
-      if (e.target === editModal) {
-        editModal.classList.add('hidden');
-      }
-    });
-  }
-
-  // 2. Search & Filter Table Logic
-  const searchInput = document.querySelector('.search-input');
-  const categorySelect = document.querySelector('.category-select');
-  const tableRows = document.querySelectorAll('tbody tr');
-
-  function filterTable() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    const selectedCategory = categorySelect.value.toLowerCase();
-
-    tableRows.forEach(row => {
-      const categoryText = row.children[0].textContent.toLowerCase();
-      const descriptionText = row.children[1].textContent.toLowerCase();
-
-      const matchesSearch = descriptionText.includes(searchTerm) || categoryText.includes(searchTerm);
-      const matchesCategory = selectedCategory === 'all' || categoryText.includes(selectedCategory);
-
-      if (matchesSearch && matchesCategory) {
-        row.style.display = '';
-      } else {
-        row.style.display = 'none';
-      }
-    });
-  }
-
-  if (searchInput && categorySelect) {
-    searchInput.addEventListener('input', filterTable);
-    categorySelect.addEventListener('change', filterTable);
+// Load Saved Society Name
+document.addEventListener("DOMContentLoaded", function () {
+  const savedName = localStorage.getItem("societyName");
+  if (savedName) {
+    document.querySelectorAll(".societyNameText").forEach(el => el.innerText = savedName);
   }
 });
+
+// Edit Modal Functions
+function openEditModal() {
+  const currentName = document.querySelector('.societyNameText').innerText;
+  document.getElementById('societyInput').value = currentName;
+  document.getElementById('editModal').classList.add('active');
+}
+
+function closeEditModal() {
+  document.getElementById('editModal').classList.remove('active');
+}
+
+function saveSocietyName() {
+  const newName = document.getElementById('societyInput').value.trim();
+  if (newName !== "") {
+    document.querySelectorAll('.societyNameText').forEach(el => el.innerText = newName);
+    localStorage.setItem("societyName", newName);
+  }
+  closeEditModal();
+}
+
+// Interactive Button Functions
+function collectMaintenance() {
+  const amount = prompt("Enter Maintenance Amount Collected (₹):");
+  if (amount) {
+    alert("Maintenance of ₹" + amount + " collected successfully!");
+  }
+}
+
+function addExpense() {
+  const category = prompt("Enter Expense Category:");
+  const amount = prompt("Enter Expense Amount (₹):");
+  if (category && amount) {
+    alert("Expense of ₹" + amount + " under '" + category + "' added!");
+  }
+}
+
+function postNotice() {
+  const title = prompt("Enter Notice Title:");
+  const desc = prompt("Enter Notice Description:");
+  if (title && desc) {
+    const heading = document.querySelector('.notice-content h4');
+    const paragraph = document.querySelector('.notice-content p');
+    const dateTag = document.querySelector('.notice-date');
+    
+    if (heading) heading.innerText = title;
+    if (paragraph) paragraph.innerText = desc;
+    if (dateTag) dateTag.innerText = "Today";
+    
+    alert("New Notice Published!");
+  }
+}
