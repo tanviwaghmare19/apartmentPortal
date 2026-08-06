@@ -39,7 +39,8 @@
         </nav>
 
         <div style="display: flex; align-items: center;" class="nav-right">
-            <a href="#" class="bell-btn notification-icon">
+            <!-- Bell Icon with Click Event Added -->
+            <a href="#" class="bell-btn notification-icon" onclick="openNotificationModal(event)">
                 <i class="fa-solid fa-bell"></i>
                 <span class="badge">3</span>
             </a>
@@ -116,6 +117,28 @@
                 <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
                 <button class="btn-update" onclick="saveSocietyName()">Update Name</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Notification Modal Popup -->
+    <div id="modal-notifications" class="modal-overlay hidden">
+        <div class="modal-card notification-card" style="max-width: 450px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h3 style="display: flex; align-items: center; gap: 8px; font-size: 16px;"><i class="fa-solid fa-bell" style="color: #2563eb;"></i> Recent System Alerts</h3>
+                <span style="background-color: #eff6ff; color: #1d4ed8; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">3 Alerts</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+                <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px; font-size: 12px; color: #1e293b;">
+                    <strong>New Complaint:</strong> Water Leakage reported in Flat 302
+                </div>
+                <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: 8px; font-size: 12px; color: #166534;">
+                    <strong>Payment Received:</strong> Flat 101 paid ₹2,000 via UPI
+                </div>
+                <div style="background-color: #fefce8; border: 1px solid #fef08a; padding: 12px; border-radius: 8px; font-size: 12px; color: #854d0e;">
+                    <strong>Booking Alert:</strong> Community Hall requested for 15 Aug
+                </div>
+            </div>
+            <button onclick="closeNotificationModal()" class="submit-btn" style="width: 100%; padding: 10px; background-color: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; border-radius: 8px; font-weight: bold; cursor: pointer;">Close Notifications</button>
         </div>
     </div>
 

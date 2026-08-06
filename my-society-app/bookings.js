@@ -85,3 +85,15 @@ function saveSocietyName() {
         alert('Please enter a valid society name');
     }
 }
+
+/* --- Notification Modal Functions --- */
+function openNotificationModal(e) {
+    if (e) e.preventDefault();
+    const modal = document.getElementById('modal-notifications');
+    if (modal) modal.classList.remove('hidden');
+}
+
+function closeNotificationModal() {
+    const modal = document.getElementById('modal-notifications');
+    if (modal) modal.classList.add('hidden');
+}
