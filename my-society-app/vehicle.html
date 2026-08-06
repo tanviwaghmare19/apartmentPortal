@@ -29,118 +29,52 @@
 
     .main-container { padding: 20px; max-width: 1350px; margin: 0 auto; }
     .table-card { background-color: #ffffff; border-radius: 12px; padding: 20px; border: 1px solid #e2e8f0; }
-    table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 15px; }
-    th { font-size: 11px; font-weight: 700; color: #64748b; padding: 10px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; }
-    td { padding: 12px 10px; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
+    
+    /* Table Header Layout */
+    .table-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+    .table-header-flex h2 { font-size: 16px; font-weight: 700; color: #0f172a; }
+    .table-header-flex p { font-size: 12px; color: #64748b; margin-top: 2px; }
+    
+    .table-actions-right { display: flex; align-items: center; gap: 10px; }
+    .search-input { padding: 8px 12px; font-size: 12px; border: 1px solid #e2e8f0; border-radius: 8px; width: 220px; outline: none; background: #fff; }
+    .btn-primary { background-color: #2563eb; color: #ffffff; border: none; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
 
+    table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 10px; }
+    th { font-size: 11px; font-weight: 700; color: #64748b; padding: 12px 10px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; }
+    td { padding: 14px 10px; border-bottom: 1px solid #f1f5f9; font-size: 12px; color: #334155; }
+    
+    .slot-badge { background: #eff6ff; color: #2563eb; padding: 4px 10px; border-radius: 6px; font-weight: 600; font-size: 11px; display: inline-block; }
+    
+    /* Red Delete Button Styling */
+    .delete-btn { background: none; border: none; cursor: pointer; color: #ef4444; display: inline-flex; align-items: center; justify-content: center; padding: 4px; border-radius: 4px; transition: background 0.2s; }
+    .delete-btn:hover { background-color: #ffeeec; }
+
+    /* Modal Styles */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 999; }
     .modal-overlay.active { display: flex; }
-    .modal-card { background: #ffffff; width: 100%; max-width: 400px; border-radius: 16px; padding: 24px; }
-    .modal-card input { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; margin: 15px 0 20px 0; outline: none; }
-    .modal-actions { display: flex; justify-content: flex-end; gap: 12px; }
-    .btn-cancel { background: none; border: none; color: #64748b; font-weight: 600; cursor: pointer; }
-    .btn-update { background-color: #2563eb; color: white; border: none; padding: 9px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+    .modal-card { background: #ffffff; width: 100%; max-width: 440px; border-radius: 16px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    .modal-card h3 { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 15px; }
+    .modal-card input, .modal-card select { width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; margin-bottom: 15px; outline: none; background: #fff; color: #334155; }
+    .modal-actions { display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-top: 5px; }
+    .btn-cancel { background: none; border: none; color: #64748b; font-weight: 600; font-size: 13px; cursor: pointer; }
+    .btn-save { background-color: #2563eb; color: white; border: none; padding: 9px 16px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; }
 
-    /* ==========================================
-       Recent System Alerts Modal Styles
-    ========================================== */
-    .notif-card-box {
-      width: 480px !important;
-      max-width: 90%;
-      padding: 24px !important;
-      border-radius: 16px !important;
-    }
-
-    .notif-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .notif-title-row {
-      font-size: 17px;
-      font-weight: 700;
-      color: #0f172a;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .notif-count-badge {
-      background: #eff6ff;
-      color: #2563eb;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 20px;
-    }
-
-    .notif-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .notif-item {
-      padding: 14px 16px;
-      border-radius: 10px;
-      font-size: 13px;
-      border: 1px solid transparent;
-      line-height: 1.4;
-    }
-
-    .notif-item strong {
-      font-weight: 700;
-    }
-
-    .notif-gray {
-      background-color: #f8fafc;
-      border-color: #f1f5f9;
-      color: #334155;
-    }
-
-    .notif-gray strong {
-      color: #0f172a;
-    }
-
-    .notif-green {
-      background-color: #f0fdf4;
-      border-color: #dcfce7;
-      color: #166534;
-    }
-
-    .notif-green strong {
-      color: #15803d;
-    }
-
-    .notif-yellow {
-      background-color: #fffbeb;
-      border-color: #fef3c7;
-      color: #92400e;
-    }
-
-    .notif-yellow strong {
-      color: #b45309;
-    }
-
-    .btn-close-notif {
-      width: 100%;
-      background: #f1f5f9;
-      color: #334155;
-      border: none;
-      padding: 12px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn-close-notif:hover {
-      background: #e2e8f0;
-    }
+    /* Recent System Alerts Modal Styles */
+    .notif-card-box { width: 480px !important; max-width: 90%; padding: 24px !important; border-radius: 16px !important; }
+    .notif-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .notif-title-row { font-size: 17px; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 10px; }
+    .notif-count-badge { background: #eff6ff; color: #2563eb; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+    .notif-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .notif-item { padding: 14px 16px; border-radius: 10px; font-size: 13px; border: 1px solid transparent; line-height: 1.4; }
+    .notif-item strong { font-weight: 700; }
+    .notif-gray { background-color: #f8fafc; border-color: #f1f5f9; color: #334155; }
+    .notif-gray strong { color: #0f172a; }
+    .notif-green { background-color: #f0fdf4; border-color: #dcfce7; color: #166534; }
+    .notif-green strong { color: #15803d; }
+    .notif-yellow { background-color: #fffbeb; border-color: #fef3c7; color: #92400e; }
+    .notif-yellow strong { color: #b45309; }
+    .btn-close-notif { width: 100%; background: #f1f5f9; color: #334155; border: none; padding: 12px; border-radius: 10px; font-weight: 600; font-size: 13px; cursor: pointer; transition: background 0.2s; }
+    .btn-close-notif:hover { background: #e2e8f0; }
   </style>
 </head>
 <body>
@@ -185,18 +119,79 @@
 
   <main class="main-container">
     <div class="table-card">
-      <h2>Vehicle Parking Registry</h2>
+      <div class="table-header-flex">
+        <div>
+          <h2>Society Vehicle & Parking Directory</h2>
+          <p>Track car/bike numbers and allotted parking slots</p>
+        </div>
+        <div class="table-actions-right">
+          <input type="text" class="search-input" placeholder="Search vehicle or flat...">
+          <button class="btn-primary" onclick="openAllotModal()">+ Allot Parking</button>
+        </div>
+      </div>
       <table>
-        <thead><tr><th>SLOT NO</th><th>VEHICLE NO</th><th>OWNER</th><th>TYPE</th></tr></thead>
+        <thead>
+          <tr>
+            <th>VEHICLE TYPE</th>
+            <th>VEHICLE NUMBER</th>
+            <th>ALLOTTED SLOT</th>
+            <th>OWNER / FLAT NO</th>
+            <th>ACTION</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td>P-01</td><td>MH 02 AB 1234</td><td>Jethalal Gada</td><td>4-Wheeler (Car)</td></tr>
-          <tr><td>P-02</td><td>MH 02 CD 5678</td><td>Atmaram Bhide</td><td>2-Wheeler (Scooter)</td></tr>
+          <tr>
+            <td>
+              <svg class="icon" viewBox="0 0 24 24" style="color: #2563eb; margin-right: 6px;"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.85 7h10.29l1.04 3H5.81l1.04-3zM19 17H5v-4.66l.12-.34h13.76l.12.34V17z"/></svg>
+              Car
+            </td>
+            <td><strong>MH-12-AB-1234</strong></td>
+            <td><span class="slot-badge">Slot A-42</span></td>
+            <td>Ramesh Kumar - Flat 101</td>
+            <td>
+              <button class="delete-btn" title="Delete">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 15px; height: 15px;"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <svg class="icon" viewBox="0 0 24 24" style="color: #d97706; margin-right: 6px;"><path d="M15.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM5 12c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5zm13.5-8.5c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5zm0 8.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5zM12 7.5L9.3 10.2c-.4.4-.4 1 0 1.4.4.4 1 .4 1.4 0L12 9.4l1.3 1.3c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4L12 7.5z"/></svg>
+              Bike
+            </td>
+            <td><strong>MH-31-XY-9876</strong></td>
+            <td><span class="slot-badge">Slot B-12</span></td>
+            <td>Anil Deshmukh - Flat 201</td>
+            <td>
+              <button class="delete-btn" title="Delete">
+                <svg class="icon" viewBox="0 0 24 24" style="width: 15px; height: 15px;"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+              </button>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
   </main>
 
   <!-- ==================== MODALS ==================== -->
+
+  <!-- Allot Parking Modal -->
+  <div class="modal-overlay" id="allotModal">
+    <div class="modal-card">
+      <h3>Allot Parking Slot to Vehicle</h3>
+      <select>
+        <option>Car</option>
+        <option>Bike</option>
+      </select>
+      <input type="text" placeholder="VEHICLE NO (E.G. MH-12-AB-1234)">
+      <input type="text" placeholder="Allotted Slot (e.g. Slot A-42)">
+      <input type="text" placeholder="Owner Name & Flat (e.g. Ramesh Kumar - Flat 101)">
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeAllotModal()">Cancel</button>
+        <button class="btn-save" onclick="closeAllotModal()">Save Parking Allotment</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Recent System Alerts Modal -->
   <div class="modal-overlay" id="notifModal">
@@ -262,6 +257,15 @@
         localStorage.setItem("societyName", newName);
       }
       closeEditModal();
+    }
+
+    /* Allot Parking Modal Functions */
+    function openAllotModal() {
+      document.getElementById('allotModal').classList.add('active');
+    }
+
+    function closeAllotModal() {
+      document.getElementById('allotModal').classList.remove('active');
     }
 
     /* Notification Bell Modal Functions */
