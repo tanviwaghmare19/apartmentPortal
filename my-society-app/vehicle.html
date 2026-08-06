@@ -22,7 +22,8 @@
     
     /* Bell Badge Overlap */
     .nav-right { display: flex; align-items: center; gap: 10px; }
-    .notification-icon { position: relative; background-color: #1e293b; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.05); }
+    .notification-icon { position: relative; background-color: #1e293b; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.05); transition: background 0.2s; }
+    .notification-icon:hover { background-color: #334155; }
     .notification-icon .badge { position: absolute; top: -3px; right: -3px; background-color: #ef4444; color: #ffffff; font-size: 10px; font-weight: 700; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; line-height: 1; }
     .logout-btn { background-color: #1e293b; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.05); }
 
@@ -35,10 +36,111 @@
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 999; }
     .modal-overlay.active { display: flex; }
     .modal-card { background: #ffffff; width: 100%; max-width: 400px; border-radius: 16px; padding: 24px; }
-    .modal-card input { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; margin: 15px 0 20px 0; }
+    .modal-card input { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; margin: 15px 0 20px 0; outline: none; }
     .modal-actions { display: flex; justify-content: flex-end; gap: 12px; }
     .btn-cancel { background: none; border: none; color: #64748b; font-weight: 600; cursor: pointer; }
     .btn-update { background-color: #2563eb; color: white; border: none; padding: 9px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+
+    /* ==========================================
+       Recent System Alerts Modal Styles
+    ========================================== */
+    .notif-card-box {
+      width: 480px !important;
+      max-width: 90%;
+      padding: 24px !important;
+      border-radius: 16px !important;
+    }
+
+    .notif-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .notif-title-row {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .notif-count-badge {
+      background: #eff6ff;
+      color: #2563eb;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .notif-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .notif-item {
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      border: 1px solid transparent;
+      line-height: 1.4;
+    }
+
+    .notif-item strong {
+      font-weight: 700;
+    }
+
+    .notif-gray {
+      background-color: #f8fafc;
+      border-color: #f1f5f9;
+      color: #334155;
+    }
+
+    .notif-gray strong {
+      color: #0f172a;
+    }
+
+    .notif-green {
+      background-color: #f0fdf4;
+      border-color: #dcfce7;
+      color: #166534;
+    }
+
+    .notif-green strong {
+      color: #15803d;
+    }
+
+    .notif-yellow {
+      background-color: #fffbeb;
+      border-color: #fef3c7;
+      color: #92400e;
+    }
+
+    .notif-yellow strong {
+      color: #b45309;
+    }
+
+    .btn-close-notif {
+      width: 100%;
+      background: #f1f5f9;
+      color: #334155;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-close-notif:hover {
+      background: #e2e8f0;
+    }
   </style>
 </head>
 <body>
@@ -70,7 +172,8 @@
     </nav>
 
     <div class="nav-right">
-      <div class="notification-icon">
+      <!-- Bell Icon Trigger -->
+      <div class="notification-icon" onclick="openNotifModal()" title="View Notifications">
         <svg class="icon" viewBox="0 0 24 24" style="width: 15px; height: 15px;"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
         <span class="badge">3</span>
       </div>
@@ -93,6 +196,36 @@
     </div>
   </main>
 
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Recent System Alerts Modal -->
+  <div class="modal-overlay" id="notifModal">
+    <div class="modal-card notif-card-box">
+      <div class="notif-header">
+        <div class="notif-title-row">
+          <svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #2563eb;"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+          <span>Recent System Alerts</span>
+        </div>
+        <span class="notif-count-badge">3 Alerts</span>
+      </div>
+
+      <div class="notif-list">
+        <div class="notif-item notif-gray">
+          <strong>New Complaint:</strong> Water Leakage reported in Flat 302
+        </div>
+        <div class="notif-item notif-green">
+          <strong>Payment Received:</strong> Flat 101 paid ₹2,000 via UPI
+        </div>
+        <div class="notif-item notif-yellow">
+          <strong>Booking Alert:</strong> Community Hall requested for 15 Aug
+        </div>
+      </div>
+
+      <button class="btn-close-notif" onclick="closeNotifModal()">Close Notifications</button>
+    </div>
+  </div>
+
+  <!-- Edit Society Name Modal -->
   <div class="modal-overlay" id="editModal">
     <div class="modal-card">
       <h3>Edit Society Name</h3>
@@ -129,6 +262,15 @@
         localStorage.setItem("societyName", newName);
       }
       closeEditModal();
+    }
+
+    /* Notification Bell Modal Functions */
+    function openNotifModal() {
+      document.getElementById('notifModal').classList.add('active');
+    }
+
+    function closeNotifModal() {
+      document.getElementById('notifModal').classList.remove('active');
     }
   </script>
 </body>

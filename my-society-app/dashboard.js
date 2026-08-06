@@ -86,6 +86,9 @@ function submitExpense() {
   alert('Expense recorded successfully!');
   closeExpenseModal();
   
+  // Re-bind listeners so the new row's receipt link works
+  attachReceiptListeners();
+
   // Clear inputs
   document.getElementById('expDesc').value = '';
   document.getElementById('expAmount').value = '';
@@ -139,4 +142,60 @@ function exportTableToCSV(filename) {
 
 function printExpenseTable() {
   window.print();
+}
+
+// 6. Expense Voucher Modal Script Logic
+function openVoucherModal(category, desc, date, amount) {
+  document.getElementById('vouchCategory').innerText = category;
+  document.getElementById('vouchDesc').innerText = desc;
+  document.getElementById('vouchDate').innerText = date;
+  document.getElementById('vouchAmount').innerText = amount;
+  
+  document.getElementById('voucherModal').classList.add('active');
+}
+
+function closeVoucherModal() {
+  document.getElementById('voucherModal').classList.remove('active');
+}
+
+function printVoucher() {
+  const printContents = document.getElementById('printableVoucher').innerHTML;
+  const originalContents = document.body.innerHTML;
+
+  document.body.innerHTML = `<div style="padding: 40px; max-width: 500px; margin: auto; font-family: sans-serif;">${printContents}</div>`;
+  window.print();
+  document.body.innerHTML = originalContents;
+  location.reload(); 
+}
+
+// 7. Recent System Alerts (Notification Bell Modal Logic)
+function openNotifModal() {
+  document.getElementById('notifModal').classList.add('active');
+}
+
+function closeNotifModal() {
+  document.getElementById('notifModal').classList.remove('active');
+}
+
+// Bind event listeners on page load
+document.addEventListener('DOMContentLoaded', () => {
+  attachReceiptListeners();
+});
+
+// Function to attach click triggers to expense table rows
+function attachReceiptListeners() {
+  document.querySelectorAll('.link-receipt').forEach(link => {
+    link.onclick = (e) => {
+      e.preventDefault();
+      const row = link.closest('tr');
+      if (!row) return;
+      
+      const category = row.cells[0] ? row.cells[0].innerText.trim() : 'General';
+      const desc = row.cells[1] ? row.cells[1].innerText.trim() : 'Expense Item';
+      const date = row.cells[2] ? row.cells[2].innerText.trim() : '01 Aug 2026';
+      const amount = row.cells[4] ? row.cells[4].innerText.trim() : '₹0';
+      
+      openVoucherModal(category, desc, date, amount);
+    };
+  });
 }

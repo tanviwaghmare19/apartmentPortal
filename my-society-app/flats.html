@@ -22,26 +22,153 @@
     
     /* Bell Badge Overlap */
     .nav-right { display: flex; align-items: center; gap: 10px; }
-    .notification-icon { position: relative; background-color: #1e293b; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.05); }
+    .notification-icon { position: relative; background-color: #1e293b; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.05); transition: background 0.2s; }
+    .notification-icon:hover { background-color: #334155; }
     .notification-icon .badge { position: absolute; top: -3px; right: -3px; background-color: #ef4444; color: #ffffff; font-size: 10px; font-weight: 700; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; line-height: 1; }
     .logout-btn { background-color: #1e293b; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #ffffff; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.05); }
 
-    /* Page Body */
+    /* Page Body & Cards Grid Layout */
     .main-container { padding: 20px; max-width: 1350px; margin: 0 auto; }
-    .table-card { background-color: #ffffff; border-radius: 12px; padding: 20px; border: 1px solid #e2e8f0; }
-    table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 15px; }
-    th { font-size: 11px; font-weight: 700; color: #64748b; padding: 10px; border-bottom: 1px solid #e2e8f0; background: #f8fafc; }
-    td { padding: 12px 10px; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
-    .status-paid { color: #059669; font-weight: 700; }
-    .status-pending { color: #e11d48; font-weight: 700; }
+    .table-card { background-color: #ffffff; border-radius: 12px; padding: 24px; border: 1px solid #e2e8f0; }
+    
+    .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .header-row h2 { font-size: 18px; font-weight: 700; color: #0f172a; }
+    .header-row p { font-size: 12px; color: #64748b; margin-top: 2px; }
+    .search-box { padding: 8px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 12px; width: 240px; outline: none; }
 
+    .flats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .flat-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; display: flex; justify-content: space-between; align-items: center; }
+    
+    .flat-info h4 { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 3px; }
+    .flat-info p { font-size: 12px; color: #64748b; margin-bottom: 8px; }
+    
+    .badge-paid { background: #dcfce7; color: #15803d; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+    .badge-unpaid { background: #fee2e2; color: #b91c1c; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; display: inline-block; }
+
+    .ledger-btn { background: #ffffff; border: 1px solid #cbd5e1; color: #334155; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+    .ledger-btn:hover { background: #f1f5f9; }
+
+    /* General Modal & Ledger Popup Overlay */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 999; }
     .modal-overlay.active { display: flex; }
-    .modal-card { background: #ffffff; width: 100%; max-width: 400px; border-radius: 16px; padding: 24px; }
-    .modal-card input { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; margin: 15px 0 20px 0; }
+    
+    .modal-card { background: #ffffff; width: 100%; max-width: 400px; border-radius: 16px; padding: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    .modal-card input { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 13px; margin: 15px 0 20px 0; outline: none; }
     .modal-actions { display: flex; justify-content: flex-end; gap: 12px; }
     .btn-cancel { background: none; border: none; color: #64748b; font-weight: 600; cursor: pointer; }
     .btn-update { background-color: #2563eb; color: white; border: none; padding: 9px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+
+    /* Specific Ledger Modal Styles */
+    .ledger-modal { max-width: 480px; padding: 20px 24px; }
+    .ledger-title { font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 2px; }
+    .ledger-subtitle { font-size: 12px; color: #64748b; margin-bottom: 16px; }
+    .ledger-row-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; color: #334155; }
+    .ledger-row-item:last-child { border-bottom: none; }
+    .ledger-badge-paid { color: #15803d; font-weight: 700; font-size: 12px; }
+    .ledger-badge-unpaid { color: #b91c1c; font-weight: 700; font-size: 12px; }
+    .close-ledger-btn { width: 100%; background: #f8fafc; border: 1px solid #cbd5e1; color: #334155; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; margin-top: 20px; text-align: center; }
+    .close-ledger-btn:hover { background: #f1f5f9; }
+
+    /* ==========================================
+       Recent System Alerts Modal Styles
+    ========================================== */
+    .notif-card-box {
+      width: 480px !important;
+      max-width: 90%;
+      padding: 24px !important;
+      border-radius: 16px !important;
+    }
+
+    .notif-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .notif-title-row {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .notif-count-badge {
+      background: #eff6ff;
+      color: #2563eb;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .notif-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .notif-item {
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      border: 1px solid transparent;
+      line-height: 1.4;
+    }
+
+    .notif-item strong {
+      font-weight: 700;
+    }
+
+    .notif-gray {
+      background-color: #f8fafc;
+      border-color: #f1f5f9;
+      color: #334155;
+    }
+
+    .notif-gray strong {
+      color: #0f172a;
+    }
+
+    .notif-green {
+      background-color: #f0fdf4;
+      border-color: #dcfce7;
+      color: #166534;
+    }
+
+    .notif-green strong {
+      color: #15803d;
+    }
+
+    .notif-yellow {
+      background-color: #fffbeb;
+      border-color: #fef3c7;
+      color: #92400e;
+    }
+
+    .notif-yellow strong {
+      color: #b45309;
+    }
+
+    .btn-close-notif {
+      width: 100%;
+      background: #f1f5f9;
+      color: #334155;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-close-notif:hover {
+      background: #e2e8f0;
+    }
   </style>
 </head>
 <body>
@@ -73,7 +200,8 @@
     </nav>
 
     <div class="nav-right">
-      <div class="notification-icon">
+      <!-- Bell Icon Trigger -->
+      <div class="notification-icon" onclick="openNotifModal()" title="View Notifications">
         <svg class="icon" viewBox="0 0 24 24" style="width: 15px; height: 15px;"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
         <span class="badge">3</span>
       </div>
@@ -85,17 +213,103 @@
 
   <main class="main-container">
     <div class="table-card">
-      <h2>Flats & Ledger Details</h2>
-      <table>
-        <thead><tr><th>FLAT NO</th><th>OWNER NAME</th><th>PHONE</th><th>STATUS</th><th>DUE AMOUNT</th></tr></thead>
-        <tbody>
-          <tr><td>A-101</td><td>Jethalal Gada</td><td>+91 9876543210</td><td><span class="status-paid">PAID</span></td><td>₹0</td></tr>
-          <tr><td>A-102</td><td>Atmaram Bhide</td><td>+91 9876543211</td><td><span class="status-pending">PENDING</span></td><td>₹2,000</td></tr>
-        </tbody>
-      </table>
+      <div class="header-row">
+        <div>
+          <h2>Flats & Maintenance Ledger</h2>
+          <p>All 50 society flats directory & payment records</p>
+        </div>
+        <input type="text" class="search-box" placeholder="Search flat or owner...">
+      </div>
+
+      <!-- Flats Cards Grid -->
+      <div class="flats-grid">
+        <div class="flat-box">
+          <div class="flat-info">
+            <h4>Flat 101</h4>
+            <p>Ramesh Kumar (Owner)</p>
+            <span class="badge-paid">Paid</span>
+          </div>
+          <button class="ledger-btn" onclick="openLedger('Flat 101', 'Ramesh Kumar')">Ledger</button>
+        </div>
+
+        <div class="flat-box">
+          <div class="flat-info">
+            <h4>Flat 102</h4>
+            <p>Suresh Gupta (Tenant)</p>
+            <span class="badge-unpaid">Unpaid</span>
+          </div>
+          <button class="ledger-btn" onclick="openLedger('Flat 102', 'Suresh Gupta')">Ledger</button>
+        </div>
+
+        <div class="flat-box">
+          <div class="flat-info">
+            <h4>Flat 201</h4>
+            <p>Anil Deshmukh (Owner)</p>
+            <span class="badge-paid">Paid</span>
+          </div>
+          <button class="ledger-btn" onclick="openLedger('Flat 201', 'Anil Deshmukh')">Ledger</button>
+        </div>
+
+        <div class="flat-box">
+          <div class="flat-info">
+            <h4>Flat 204</h4>
+            <p>Pooja Verma (Tenant)</p>
+            <span class="badge-unpaid">Unpaid</span>
+          </div>
+          <button class="ledger-btn" onclick="openLedger('Flat 204', 'Pooja Verma')">Ledger</button>
+        </div>
+
+        <div class="flat-box">
+          <div class="flat-info">
+            <h4>Flat 301</h4>
+            <p>Rajesh Sharma (Owner)</p>
+            <span class="badge-paid">Paid</span>
+          </div>
+          <button class="ledger-btn" onclick="openLedger('Flat 301', 'Rajesh Sharma')">Ledger</button>
+        </div>
+
+        <div class="flat-box">
+          <div class="flat-info">
+            <h4>Flat 305</h4>
+            <p>Vikas Patil (Owner)</p>
+            <span class="badge-unpaid">Unpaid</span>
+          </div>
+          <button class="ledger-btn" onclick="openLedger('Flat 305', 'Vikas Patil')">Ledger</button>
+        </div>
+      </div>
     </div>
   </main>
 
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Recent System Alerts Modal -->
+  <div class="modal-overlay" id="notifModal">
+    <div class="modal-card notif-card-box">
+      <div class="notif-header">
+        <div class="notif-title-row">
+          <svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #2563eb;"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+          <span>Recent System Alerts</span>
+        </div>
+        <span class="notif-count-badge">3 Alerts</span>
+      </div>
+
+      <div class="notif-list">
+        <div class="notif-item notif-gray">
+          <strong>New Complaint:</strong> Water Leakage reported in Flat 302
+        </div>
+        <div class="notif-item notif-green">
+          <strong>Payment Received:</strong> Flat 101 paid ₹2,000 via UPI
+        </div>
+        <div class="notif-item notif-yellow">
+          <strong>Booking Alert:</strong> Community Hall requested for 15 Aug
+        </div>
+      </div>
+
+      <button class="btn-close-notif" onclick="closeNotifModal()">Close Notifications</button>
+    </div>
+  </div>
+
+  <!-- Edit Society Name Modal -->
   <div class="modal-overlay" id="editModal">
     <div class="modal-card">
       <h3>Edit Society Name</h3>
@@ -104,6 +318,29 @@
         <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
         <button class="btn-update" onclick="saveSocietyName()">Update Name</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Ledger Popup Modal -->
+  <div class="modal-overlay" id="ledgerModal">
+    <div class="modal-card ledger-modal">
+      <h3 class="ledger-title" id="ledgerModalTitle">Flat 101 - Payment Ledger</h3>
+      <p class="ledger-subtitle" id="ledgerModalResident">Resident: Ramesh Kumar</p>
+      
+      <div class="ledger-row-item">
+        <span>August 2026:</span>
+        <span class="ledger-badge-paid">PAID (₹2,000)</span>
+      </div>
+      <div class="ledger-row-item">
+        <span>July 2026:</span>
+        <span class="ledger-badge-paid">PAID (₹2,000)</span>
+      </div>
+      <div class="ledger-row-item">
+        <span>June 2026:</span>
+        <span class="ledger-badge-paid">PAID (₹2,000)</span>
+      </div>
+
+      <button class="close-ledger-btn" onclick="closeLedger()">Close Ledger</button>
     </div>
   </div>
 
@@ -132,6 +369,26 @@
         localStorage.setItem("societyName", newName);
       }
       closeEditModal();
+    }
+
+    /* Ledger Modal Functions */
+    function openLedger(flatNo, residentName) {
+      document.getElementById('ledgerModalTitle').innerText = flatNo + " - Payment Ledger";
+      document.getElementById('ledgerModalResident').innerText = "Resident: " + residentName;
+      document.getElementById('ledgerModal').classList.add('active');
+    }
+
+    function closeLedger() {
+      document.getElementById('ledgerModal').classList.remove('active');
+    }
+
+    /* Notification Bell Modal Functions */
+    function openNotifModal() {
+      document.getElementById('notifModal').classList.add('active');
+    }
+
+    function closeNotifModal() {
+      document.getElementById('notifModal').classList.remove('active');
     }
   </script>
 </body>

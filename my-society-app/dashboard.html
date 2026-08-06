@@ -34,11 +34,13 @@
       <a href="vehicle.html" class="nav-item">Vehicle Parking</a>
       <a href="helpdesk.html" class="nav-item">Helpdesk</a>
       <a href="bookings.html" class="nav-item">Bookings</a>
+      <a href="gatekeeperlog.html" class="nav-item">Gatekeeper Log</a>
       <a href="staff.html" class="nav-item">Staff Directory</a>
     </nav>
 
     <div class="nav-right">
-      <div class="notification-icon">
+      <!-- Bell Icon Trigger -->
+      <div class="notification-icon" onclick="openNotifModal()" title="View Notifications">
         <i class="fa-solid fa-bell"></i>
         <span class="badge">3</span>
       </div>
@@ -186,6 +188,66 @@
     </div>
   </main>
 
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Recent System Alerts Modal (Triggered by Bell Icon) -->
+  <div class="modal-overlay" id="notifModal">
+    <div class="modal-card notif-card-box">
+      <div class="notif-header">
+        <div class="notif-title">
+          <i class="fa-solid fa-bell" style="color: #2563eb;"></i>
+          <span>Recent System Alerts</span>
+        </div>
+        <span class="notif-count-badge">3 Alerts</span>
+      </div>
+
+      <div class="notif-list">
+        <div class="notif-item notif-gray">
+          <strong>New Complaint:</strong> Water Leakage reported in Flat 302
+        </div>
+        <div class="notif-item notif-green">
+          <strong>Payment Received:</strong> Flat 101 paid ₹2,000 via UPI
+        </div>
+        <div class="notif-item notif-yellow">
+          <strong>Booking Alert:</strong> Community Hall requested for 15 Aug
+        </div>
+      </div>
+
+      <button class="btn-close-notif" onclick="closeNotifModal()">Close Notifications</button>
+    </div>
+  </div>
+
+  <!-- Expense Voucher Modal -->
+  <div class="modal-overlay" id="voucherModal">
+    <div class="modal-card voucher-card-box">
+      <div class="voucher-header">
+        <div class="voucher-title"><i class="fa-solid fa-file-lines"></i> Expense Voucher</div>
+        <button class="voucher-close-btn" onclick="closeVoucherModal()">&times;</button>
+      </div>
+      
+      <div class="voucher-body" id="printableVoucher">
+        <div class="voucher-stamp">PAID & VERIFIED</div>
+        <div class="voucher-meta">GOKUL DHAM SOCIETY OFFICIAL VOUCHER</div>
+        <h4 id="vouchDesc" class="voucher-desc">Security Guard Monthly Salary</h4>
+        
+        <div class="voucher-details-row">
+          <span>Category: <strong id="vouchCategory">Security Guard</strong></span>
+          <span>Date: <strong id="vouchDate">01 Aug 2026</strong></span>
+        </div>
+        
+        <div class="voucher-amount-box">
+          <span>Total Paid Amount</span>
+          <span id="vouchAmount" class="voucher-amount">₹10,000</span>
+        </div>
+      </div>
+
+      <div class="modal-actions voucher-actions" style="margin-top: 20px;">
+        <button class="btn-print-voucher" onclick="printVoucher()"><i class="fa-solid fa-print"></i> Print</button>
+        <button class="btn-cancel" onclick="closeVoucherModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Edit Society Name Modal -->
   <div class="modal-overlay" id="editModal">
     <div class="modal-card">
@@ -221,7 +283,7 @@
     </div>
   </div>
 
-  <!-- Record New Expense Modal (Matched to User Screenshot) -->
+  <!-- Record New Expense Modal -->
   <div class="modal-overlay" id="expenseModal">
     <div class="modal-card">
       <h3 class="modal-title-custom">Record New Expense</h3>

@@ -100,6 +100,12 @@ body {
   cursor: pointer;
   color: #94a3b8;
   display: flex;
+  transition: background 0.2s;
+}
+
+.notification-icon:hover {
+  background: #334155;
+  color: #ffffff;
 }
 
 .badge {
@@ -111,6 +117,7 @@ body {
   font-size: 10px;
   padding: 2px 5px;
   border-radius: 50%;
+  font-weight: 700;
 }
 
 .logout-btn {
@@ -497,4 +504,224 @@ td {
 
 .btn-save-expense:hover {
   background: #be123c;
+}
+
+/* ==========================================
+   Expense Voucher Modal Custom Styles
+========================================== */
+.voucher-card-box {
+  width: 480px !important;
+  max-width: 90%;
+  padding: 20px 24px !important;
+}
+
+.voucher-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 10px;
+}
+
+.voucher-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.voucher-close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #64748b;
+}
+
+.voucher-body {
+  border: 2px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 20px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.voucher-stamp {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: 2px solid #10b981;
+  color: #10b981;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transform: rotate(10deg);
+  letter-spacing: 1px;
+}
+
+.voucher-meta {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.voucher-desc {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 16px 0;
+}
+
+.voucher-details-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #475569;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 12px;
+}
+
+.voucher-amount-box {
+  background: #f8fafc;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.voucher-amount {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e11d48;
+}
+
+.btn-print-voucher {
+  background: #1e293b;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-print-voucher:hover {
+  background: #0f172a;
+}
+
+/* ==========================================
+   Recent System Alerts Modal Styles
+========================================== */
+.notif-card-box {
+  width: 480px !important;
+  max-width: 90%;
+  padding: 24px !important;
+  border-radius: 16px !important;
+}
+
+.notif-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.notif-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notif-count-badge {
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.notif-item {
+  padding: 14px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  border: 1px solid transparent;
+  line-height: 1.4;
+}
+
+.notif-item strong {
+  font-weight: 700;
+}
+
+.notif-gray {
+  background-color: #f8fafc;
+  border-color: #f1f5f9;
+  color: #334155;
+}
+
+.notif-gray strong {
+  color: #0f172a;
+}
+
+.notif-green {
+  background-color: #f0fdf4;
+  border-color: #dcfce7;
+  color: #166534;
+}
+
+.notif-green strong {
+  color: #15803d;
+}
+
+.notif-yellow {
+  background-color: #fffbeb;
+  border-color: #fef3c7;
+  color: #92400e;
+}
+
+.notif-yellow strong {
+  color: #b45309;
+}
+
+.btn-close-notif {
+  width: 100%;
+  background: #f1f5f9;
+  color: #334155;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-close-notif:hover {
+  background: #e2e8f0;
 }
