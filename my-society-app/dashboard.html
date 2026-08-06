@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gokul Dham Society - Dashboard</title>
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="dashboard-style.css">
 </head>
 <body>
@@ -12,13 +14,14 @@
   <header class="navbar">
     <div class="nav-left">
       <div class="logo-box">
-        <svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V18z"/></svg>
+        <i class="fa-solid fa-building"></i>
       </div>
       <div class="brand-info">
         <div class="brand-title-row">
           <h3 class="societyNameText">Gokul Dham Society</h3>
+          <!-- Pencil Edit Icon -->
           <button class="edit-btn" onclick="openEditModal()" title="Edit Name">
-            <svg class="icon" viewBox="0 0 24 24" style="width: 11px; height: 11px;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            <i class="fa-solid fa-pen"></i>
           </button>
         </div>
         <p>Admin Management Portal</p>
@@ -31,17 +34,16 @@
       <a href="vehicle.html" class="nav-item">Vehicle Parking</a>
       <a href="helpdesk.html" class="nav-item">Helpdesk</a>
       <a href="bookings.html" class="nav-item">Bookings</a>
-      <a href="visitors.html" class="nav-item">Gatekeeper Log</a>
       <a href="staff.html" class="nav-item">Staff Directory</a>
     </nav>
 
     <div class="nav-right">
       <div class="notification-icon">
-        <svg class="icon" viewBox="0 0 24 24" style="width: 15px; height: 15px;"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
+        <i class="fa-solid fa-bell"></i>
         <span class="badge">3</span>
       </div>
       <a href="index.html" class="logout-btn">
-        <svg class="icon" viewBox="0 0 24 24" style="width: 14px; height: 14px;"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59z"/></svg>
+        <i class="fa-solid fa-right-from-bracket"></i>
       </a>
     </div>
   </header>
@@ -49,6 +51,7 @@
   <!-- Main Content -->
   <main class="main-container">
     <div class="stats-grid">
+      <!-- Total Flats -->
       <div class="stat-card">
         <div>
           <div class="stat-title">TOTAL FLATS</div>
@@ -56,10 +59,11 @@
           <a href="flats.html" class="stat-subtext">View Unpaid List (3)</a>
         </div>
         <div class="stat-icon-bg">
-          <svg class="icon" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          <i class="fa-solid fa-wallet"></i>
         </div>
       </div>
 
+      <!-- Total Maintenance -->
       <div class="stat-card">
         <div>
           <div class="stat-title">TOTAL MAINTENANCE</div>
@@ -67,10 +71,11 @@
           <span style="font-size:12px; color:#10b981; font-weight:500;">Income Collected</span>
         </div>
         <div class="stat-icon-bg" style="background-color: #dcfce7; color: #10b981;">
-          <svg class="icon" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+          <i class="fa-solid fa-wallet"></i>
         </div>
       </div>
 
+      <!-- Total Expenses -->
       <div class="stat-card">
         <div>
           <div class="stat-title">TOTAL EXPENSES</div>
@@ -78,10 +83,11 @@
           <span style="font-size:12px; color:#f43f5e; font-weight:500;">Outgoing Costs</span>
         </div>
         <div class="stat-icon-bg" style="background-color: #ffe4e6; color: #f43f5e;">
-          <svg class="icon" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4 8c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3 3 3 1.34 3 3zm2.5 5c0-1.66-2.46-3-5.5-3s-5.5 1.34-5.5 3V17h11v-1z"/></svg>
+          <i class="fa-solid fa-wallet"></i>
         </div>
       </div>
 
+      <!-- Net Remaining Balance -->
       <div class="stat-card green-card">
         <div>
           <div class="stat-title">NET REMAINING BALANCE</div>
@@ -89,7 +95,7 @@
           <div class="stat-subtext">Formula: Income - Expenses</div>
         </div>
         <div class="stat-icon-bg">
-          <svg class="icon" viewBox="0 0 24 24" style="width: 20px; height: 20px;"><path d="M19.83 7.5l-2.27-2.27c-.07-.07-.15-.12-.24-.15l-3.06-1.02c-.25-.08-.53 0-.71.18l-1.68 1.68c-.18.18-.26.46-.18.71l1.02 3.06c.03.09.08.17.15.24l2.27 2.27c.39.39 1.02.39 1.41 0l3.29-3.29c.39-.39.39-1.02 0-1.41z"/></svg>
+          <i class="fa-solid fa-wallet"></i>
         </div>
       </div>
     </div>
@@ -98,7 +104,7 @@
     <div class="notice-board">
       <div class="notice-header">
         <div class="notice-title">
-          <svg class="icon" viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: #d97706;"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/></svg>
+          <i class="fa-solid fa-bullhorn" style="color: #d97706;"></i>
           Society Digital Notice Board
         </div>
         <button class="btn-orange">+ Post Notice</button>
@@ -115,12 +121,16 @@
     <!-- Action Buttons -->
     <div class="action-row">
       <div class="left-actions">
-        <button class="btn-green-action">Collect Maintenance</button>
-        <button class="btn-red-action">Add Expense</button>
+        <button class="btn-green-action" onclick="openMaintenanceModal()">+ Collect Maintenance</button>
+        <button class="btn-red-action" onclick="openExpenseModal()">- Add Expense</button>
       </div>
       <div class="right-actions">
-        <button class="btn-outline">CSV Excel</button>
-        <button class="btn-dark">PDF Print</button>
+        <button class="btn-excel" onclick="exportTableToCSV('expense-report.csv')">
+          <i class="fa-solid fa-file-excel"></i> CSV Excel
+        </button>
+        <button class="btn-pdf" onclick="printExpenseTable()">
+          <i class="fa-solid fa-file-pdf"></i> PDF Print
+        </button>
       </div>
     </div>
 
@@ -129,13 +139,17 @@
       <div class="table-header">
         <h3>Expense Log Breakdown</h3>
         <div class="table-filters">
-          <input type="text" class="search-input" placeholder="Search expense...">
-          <select class="select-input">
-            <option>All Categories</option>
+          <input type="text" id="tableSearch" class="search-input" placeholder="Search expense..." onkeyup="filterTable()">
+          <select id="categoryFilter" class="select-input" onchange="filterTable()">
+            <option value="">All Categories</option>
+            <option value="Security Guard">Security Guard</option>
+            <option value="Lift Service">Lift Service</option>
+            <option value="Sweeper / Staff">Sweeper / Staff</option>
+            <option value="Parking Light">Parking Light</option>
           </select>
         </div>
       </div>
-      <table>
+      <table id="expenseTable">
         <thead>
           <tr>
             <th>CATEGORY</th>
@@ -145,27 +159,34 @@
             <th style="text-align: right;">AMOUNT (₹)</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="expenseTableBody">
           <tr>
             <td><span class="badge-cat blue">Security Guard</span></td>
             <td>Security Guard Monthly Salary</td>
             <td>01 Aug 2026</td>
-            <td><a href="#" class="link-receipt">📎 View Receipt</a></td>
+            <td><a href="#" class="link-receipt"><i class="fa-solid fa-paperclip"></i> View Receipt</a></td>
             <td style="text-align: right;"><span class="amount-text">₹10,000</span></td>
           </tr>
           <tr>
             <td><span class="badge-cat pink">Lift Service</span></td>
             <td>Monthly Lift Servicing & AMC</td>
             <td>02 Aug 2026</td>
-            <td><a href="#" class="link-receipt">📎 View Receipt</a></td>
+            <td><a href="#" class="link-receipt"><i class="fa-solid fa-paperclip"></i> View Receipt</a></td>
             <td style="text-align: right;"><span class="amount-text">₹4,000</span></td>
+          </tr>
+          <tr>
+            <td><span class="badge-cat yellow" style="background: #fef3c7; color: #d97706;">Sweeper / Staff</span></td>
+            <td>Sweeping & Cleaning Staff Wages</td>
+            <td>02 Aug 2026</td>
+            <td><a href="#" class="link-receipt"><i class="fa-solid fa-paperclip"></i> View Receipt</a></td>
+            <td style="text-align: right;"><span class="amount-text">₹3,000</span></td>
           </tr>
         </tbody>
       </table>
     </div>
   </main>
 
-  <!-- Edit Modal -->
+  <!-- Edit Society Name Modal -->
   <div class="modal-overlay" id="editModal">
     <div class="modal-card">
       <h3>Edit Society Name</h3>
@@ -173,6 +194,68 @@
       <div class="modal-actions">
         <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
         <button class="btn-update" onclick="saveSocietyName()">Update Name</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Collect Maintenance Modal -->
+  <div class="modal-overlay" id="maintenanceModal">
+    <div class="modal-card">
+      <h3>Collect Maintenance</h3>
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 11px; font-weight: bold; color: #64748b; display: block; margin-bottom: 4px;">FLAT NUMBER</label>
+        <input type="text" id="maintFlat" placeholder="e.g., A-101">
+      </div>
+      <div style="margin-bottom: 12px;">
+        <label style="font-size: 11px; font-weight: bold; color: #64748b; display: block; margin-bottom: 4px;">AMOUNT (₹)</label>
+        <input type="number" id="maintAmount" placeholder="e.g., 2000">
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label style="font-size: 11px; font-weight: bold; color: #64748b; display: block; margin-bottom: 4px;">MONTH / NOTE</label>
+        <input type="text" id="maintMonth" placeholder="e.g., August 2026 Maintenance">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeMaintenanceModal()">Cancel</button>
+        <button class="btn-update" style="background: #059669;" onclick="submitMaintenance()">Collect</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Record New Expense Modal (Matched to User Screenshot) -->
+  <div class="modal-overlay" id="expenseModal">
+    <div class="modal-card">
+      <h3 class="modal-title-custom">Record New Expense</h3>
+      
+      <div class="form-group">
+        <label class="form-label">Expense Category</label>
+        <select id="expCategory" class="form-select">
+          <option value="Security Guard">Security Guard</option>
+          <option value="Lift Service">Lift Service</option>
+          <option value="Sweeper / Staff">Sweeper / Staff</option>
+          <option value="Parking Light">Parking Light</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <input type="text" id="expDesc" placeholder="e.g. Watchman Salary">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Amount Spent (₹)</label>
+        <input type="number" id="expAmount" placeholder="e.g. 1500">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Attach Receipt Photo</label>
+        <div class="file-input-wrapper">
+          <input type="file" id="expReceipt" class="file-input">
+        </div>
+      </div>
+
+      <div class="modal-actions" style="margin-top: 24px;">
+        <button class="btn-cancel" onclick="closeExpenseModal()">Cancel</button>
+        <button class="btn-save-expense" onclick="submitExpense()">Save Expense</button>
       </div>
     </div>
   </div>
