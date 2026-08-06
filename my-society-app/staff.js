@@ -14,6 +14,18 @@ window.onload = function() {
             el.textContent = savedName;
         });
     }
+
+    // Role check for Resident View
+    const userRole = localStorage.getItem('userRole');
+    if (userRole === 'resident') {
+        // Subtitle ko Resident View me badlne ke liye
+        const subtitle = document.querySelector('.brand-info p');
+        if (subtitle) subtitle.textContent = "Resident View (Flat 101)";
+
+        // Add Staff button ko hide karne ke liye
+        const addBtn = document.querySelector('.primary-btn');
+        if (addBtn) addBtn.style.display = 'none';
+    }
 };
 
 function renderStaff() {

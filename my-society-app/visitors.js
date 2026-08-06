@@ -13,13 +13,41 @@ window.onload = function() {
             el.textContent = savedName;
         });
     }
+
+    // Role check for Resident View
+    const userRole = localStorage.getItem('userRole');
+    if (userRole === 'resident') {
+        // Subtitle ko Resident View me badlne ke liye
+        const subtitle = document.querySelector('.brand-info p');
+        if (subtitle) subtitle.textContent = "Resident View (Flat 101)";
+
+        // Page title aur description change karne ke liye
+        const pageTitle = document.querySelector('.page-title');
+        if (pageTitle) pageTitle.textContent = "My Flat Visitors (Flat 101)";
+
+        const pageDesc = document.querySelector('.page-desc');
+        if (pageDesc) pageDesc.textContent = "Visitors & Deliveries arrived for your flat";
+
+        // New Entry button ko hide karne ke liye
+        const newEntryBtn = document.querySelector('.primary-btn');
+        if (newEntryBtn) newEntryBtn.style.display = 'none';
+    }
 };
 
 function renderVisitors() {
     const tbody = document.getElementById('visitors-table-body');
     if (!tbody) return;
     tbody.innerHTML = '';
-    visitorsData.forEach(v => {
+
+    const userRole = localStorage.getItem('userRole');
+    let displayedVisitors = visitorsData;
+
+    // Agar resident hai toh sirf Flat 101 ke visitors filter honge
+    if (userRole === 'resident') {
+        displayedVisitors = visitorsData.filter(v => v.flat === "Flat 101");
+    }
+
+    displayedVisitors.forEach(v => {
         tbody.innerHTML += `
             <tr>
                 <td style="font-weight: bold; color: #1e293b;">${v.name}</td>
