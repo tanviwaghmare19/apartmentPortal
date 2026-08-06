@@ -21,7 +21,6 @@
       padding: 20px;
     }
 
-    /* Common Card Styling */
     .auth-card {
       background: #ffffff;
       padding: 36px 32px;
@@ -144,7 +143,6 @@
   <!-- LOGIN CARD -->
   <div class="auth-card" id="loginCard">
     <div class="icon-box">
-      <!-- Apartment Building Icon -->
       <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1.4c0-2 4-3.1 6-3.1s6 1.1 6 3.1V18z"/></svg>
     </div>
 
@@ -181,11 +179,9 @@
     </p>
   </div>
 
-
   <!-- SIGN UP CARD (Hidden by default) -->
   <div class="auth-card hidden" id="signupCard">
     <div class="icon-box">
-      <!-- User Plus Icon -->
       <svg viewBox="0 0 24 24"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
     </div>
 
@@ -232,40 +228,38 @@
     </p>
   </div>
 
-
   <script>
     const loginCard = document.getElementById('loginCard');
     const signupCard = document.getElementById('signupCard');
     const goToSignUp = document.getElementById('goToSignUp');
     const goToLogIn = document.getElementById('goToLogIn');
 
-    // Toggle to Sign Up screen
     goToSignUp.addEventListener('click', (e) => {
       e.preventDefault();
       loginCard.classList.add('hidden');
       signupCard.classList.remove('hidden');
     });
 
-    // Toggle back to Log In screen
     goToLogIn.addEventListener('click', (e) => {
       e.preventDefault();
       signupCard.classList.add('hidden');
       loginCard.classList.remove('hidden');
     });
 
-    // Handle Login Submit
     document.getElementById('loginForm').addEventListener('submit', (e) => {
       e.preventDefault();
+      const selectedRole = document.getElementById('loginRole').value;
+      localStorage.setItem('userRole', selectedRole);
       window.location.href = 'dashboard.html';
     });
 
-    // Handle Sign Up Submit
     document.getElementById('signupForm').addEventListener('submit', (e) => {
       e.preventDefault();
+      const selectedRole = document.getElementById('signupRole').value;
+      localStorage.setItem('userRole', selectedRole);
       alert('Account Created Successfully!');
       window.location.href = 'dashboard.html';
     });
   </script>
-
 </body>
 </html>

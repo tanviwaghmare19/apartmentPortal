@@ -1,3 +1,54 @@
+// Check Role on Page Load & Apply View only if role is resident
+document.addEventListener('DOMContentLoaded', () => {
+  const userRole = localStorage.getItem('userRole');
+
+  // Agar user resident hai, tabhi resident view apply hoga. 
+  // Admin ke liye yeh code nahi chalega aur purana dashboard hi dikhega!
+  if (userRole === 'resident') {
+    applyResidentView();
+  }
+  
+  attachReceiptListeners();
+});
+
+// Resident View Transformation Function
+function applyResidentView() {
+  // 1. Subtitle change karein
+  const brandSub = document.querySelector('.brand-info p');
+  if (brandSub) brandSub.innerText = 'Resident View (Flat 101)';
+
+  // 2. Pehla stat card "TOTAL FLATS" ko "MY MAINTENANCE" mein badlein
+  const firstStatCard = document.querySelector('.stats-grid .stat-card');
+  if (firstStatCard) {
+    firstStatCard.innerHTML = `
+      <div>
+        <div class="stat-title">MY MAINTENANCE</div>
+        <div class="stat-value" style="font-size: 18px; color: #059669;">PAID (₹2,000)</div>
+        <div class="stat-subtext" style="color: #64748b;">Current Month Status</div>
+      </div>
+      <div class="stat-icon-bg" style="background-color: #dcfce7; color: #10b981;">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+    `;
+  }
+
+  // 3. Action buttons ko Resident wale buttons se replace karein
+  const leftActions = document.querySelector('.left-actions');
+  if (leftActions) {
+    leftActions.innerHTML = `
+      <button class="btn-red-action" style="background: #e11d48;" onclick="openExpenseModal()">- Add Expense</button>
+      <button class="btn-green-action" style="background: #059669;" onclick="alert('Redirecting to Payment Gateway...')">Pay Online (UPI)</button>
+      <button class="btn-red-action" style="background: #dc2626;" onclick="alert('Complaint box opened')">Report Complaint</button>
+    `;
+  }
+
+  // 4. Resident view mein "+ Post Notice" button ko hide karein
+  const postNoticeBtn = document.getElementById('postNoticeBtn');
+  if (postNoticeBtn) {
+    postNoticeBtn.style.display = 'none';
+  }
+}
+
 // 1. Edit Society Name Modal
 function openEditModal() {
   document.getElementById('editModal').classList.add('active');
@@ -176,11 +227,6 @@ function openNotifModal() {
 function closeNotifModal() {
   document.getElementById('notifModal').classList.remove('active');
 }
-
-// Bind event listeners on page load
-document.addEventListener('DOMContentLoaded', () => {
-  attachReceiptListeners();
-});
 
 // Function to attach click triggers to expense table rows
 function attachReceiptListeners() {

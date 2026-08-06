@@ -394,6 +394,7 @@ td {
 
 .badge-cat.blue { background: #eff6ff; color: #2563eb; }
 .badge-cat.pink { background: #fdf2f8; color: #db2777; }
+.badge-cat.yellow { background: #fef3c7; color: #d97706; }
 
 .link-receipt {
   color: #2563eb;
@@ -506,9 +507,7 @@ td {
   background: #be123c;
 }
 
-/* ==========================================
-   Expense Voucher Modal Custom Styles
-========================================== */
+/* Voucher Modal Styles */
 .voucher-card-box {
   width: 480px !important;
   max-width: 90%;
@@ -621,13 +620,7 @@ td {
   gap: 6px;
 }
 
-.btn-print-voucher:hover {
-  background: #0f172a;
-}
-
-/* ==========================================
-   Recent System Alerts Modal Styles
-========================================== */
+/* System Alerts Modal Styles */
 .notif-card-box {
   width: 480px !important;
   max-width: 90%;
@@ -675,39 +668,9 @@ td {
   line-height: 1.4;
 }
 
-.notif-item strong {
-  font-weight: 700;
-}
-
-.notif-gray {
-  background-color: #f8fafc;
-  border-color: #f1f5f9;
-  color: #334155;
-}
-
-.notif-gray strong {
-  color: #0f172a;
-}
-
-.notif-green {
-  background-color: #f0fdf4;
-  border-color: #dcfce7;
-  color: #166534;
-}
-
-.notif-green strong {
-  color: #15803d;
-}
-
-.notif-yellow {
-  background-color: #fffbeb;
-  border-color: #fef3c7;
-  color: #92400e;
-}
-
-.notif-yellow strong {
-  color: #b45309;
-}
+.notif-gray { background-color: #f8fafc; border-color: #f1f5f9; color: #334155; }
+.notif-green { background-color: #f0fdf4; border-color: #dcfce7; color: #166534; }
+.notif-yellow { background-color: #fffbeb; border-color: #fef3c7; color: #92400e; }
 
 .btn-close-notif {
   width: 100%;
@@ -719,9 +682,4 @@ td {
   font-weight: 600;
   font-size: 13px;
   cursor: pointer;
-  transition: background 0.2s;
-}
-
-.btn-close-notif:hover {
-  background: #e2e8f0;
 }
