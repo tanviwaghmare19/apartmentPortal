@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gokul Dham Society - Dashboard</title>
+  <!-- FontAwesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="dashboard-style.css">
 </head>
@@ -18,6 +19,7 @@
       <div class="brand-info">
         <div class="brand-title-row">
           <h3 class="societyNameText">Gokul Dham Society</h3>
+          <!-- Pencil Edit Icon -->
           <button class="edit-btn" onclick="openEditModal()" title="Edit Name">
             <i class="fa-solid fa-pen"></i>
           </button>
@@ -37,6 +39,7 @@
     </nav>
 
     <div class="nav-right">
+      <!-- Bell Icon Trigger -->
       <div class="notification-icon" onclick="openNotifModal()" title="View Notifications">
         <i class="fa-solid fa-bell"></i>
         <span class="badge">3</span>
@@ -50,17 +53,19 @@
   <!-- Main Content -->
   <main class="main-container">
     <div class="stats-grid">
-      <div class="stat-card">
+      <!-- First Dynamic Card (Admin: Total Flats | Resident: My Maintenance) -->
+      <div class="stat-card" id="firstStatCard">
         <div>
-          <div class="stat-title">TOTAL FLATS</div>
-          <div class="stat-value">50</div>
-          <a href="flats.html" class="stat-subtext">View Unpaid List (3)</a>
+          <div class="stat-title" id="stat1Title">TOTAL FLATS</div>
+          <div class="stat-value" id="stat1Value">50</div>
+          <a href="flats.html" class="stat-subtext" id="stat1Sub">View Unpaid List (3)</a>
         </div>
-        <div class="stat-icon-bg">
+        <div class="stat-icon-bg" id="stat1Icon">
           <i class="fa-solid fa-wallet"></i>
         </div>
       </div>
 
+      <!-- Total Maintenance -->
       <div class="stat-card">
         <div>
           <div class="stat-title">TOTAL MAINTENANCE</div>
@@ -72,6 +77,7 @@
         </div>
       </div>
 
+      <!-- Total Expenses -->
       <div class="stat-card">
         <div>
           <div class="stat-title">TOTAL EXPENSES</div>
@@ -83,6 +89,7 @@
         </div>
       </div>
 
+      <!-- Net Remaining Balance -->
       <div class="stat-card green-card">
         <div>
           <div class="stat-title">NET REMAINING BALANCE</div>
@@ -115,7 +122,7 @@
 
     <!-- Action Buttons -->
     <div class="action-row">
-      <div class="left-actions">
+      <div class="left-actions" id="actionButtonsContainer">
         <button class="btn-green-action" onclick="openMaintenanceModal()">+ Collect Maintenance</button>
         <button class="btn-red-action" onclick="openExpenseModal()">- Add Expense</button>
       </div>
@@ -181,7 +188,9 @@
     </div>
   </main>
 
-  <!-- Modals -->
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Recent System Alerts Modal -->
   <div class="modal-overlay" id="notifModal">
     <div class="modal-card notif-card-box">
       <div class="notif-header">
@@ -197,6 +206,7 @@
     </div>
   </div>
 
+  <!-- Expense Voucher Modal -->
   <div class="modal-overlay" id="voucherModal">
     <div class="modal-card voucher-card-box">
       <div class="voucher-header">
@@ -223,17 +233,19 @@
     </div>
   </div>
 
+  <!-- Edit Society Name Modal -->
   <div class="modal-overlay" id="editModal">
     <div class="modal-card">
       <h3>Edit Society Name</h3>
       <input type="text" id="societyInput" placeholder="Enter new society name">
-      <div class="modal-actions" style="margin-top: 15px;">
+      <div class="modal-actions">
         <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
-        <button class="btn-update" style="background: #2563eb; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer;" onclick="saveSocietyName()">Update Name</button>
+        <button class="btn-update" onclick="saveSocietyName()">Update Name</button>
       </div>
     </div>
   </div>
 
+  <!-- Collect Maintenance Modal -->
   <div class="modal-overlay" id="maintenanceModal">
     <div class="modal-card">
       <h3>Collect Maintenance</h3>
@@ -251,11 +263,12 @@
       </div>
       <div class="modal-actions">
         <button class="btn-cancel" onclick="closeMaintenanceModal()">Cancel</button>
-        <button class="btn-update btn-save-expense" style="background: #059669;" onclick="submitMaintenance()">Collect</button>
+        <button class="btn-update" style="background: #059669;" onclick="submitMaintenance()">Collect</button>
       </div>
     </div>
   </div>
 
+  <!-- Record New Expense Modal -->
   <div class="modal-overlay" id="expenseModal">
     <div class="modal-card">
       <h3 class="modal-title-custom">Record New Expense</h3>
@@ -285,6 +298,27 @@
       <div class="modal-actions" style="margin-top: 24px;">
         <button class="btn-cancel" onclick="closeExpenseModal()">Cancel</button>
         <button class="btn-save-expense" onclick="submitExpense()">Save Expense</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPI Payment Modal -->
+  <div class="modal-overlay" id="upiModal">
+    <div class="modal-card" style="text-align: center; max-width: 400px;">
+      <h3 style="margin-bottom: 8px; font-size: 18px; color: #1e293b;">Pay Maintenance via UPI</h3>
+      <p style="font-size: 12px; color: #64748b; margin-bottom: 20px;">Scan QR code to pay monthly maintenance ₹2,000</p>
+      
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 12px; display: inline-block; margin-bottom: 16px;">
+        <i class="fa-solid fa-qrcode" style="font-size: 80px; color: #1e293b;"></i>
+      </div>
+      
+      <div style="font-size: 13px; font-weight: 600; color: #33415b; margin-bottom: 24px;">
+        UPI ID: canary.society@okaxis
+      </div>
+
+      <div class="modal-actions" style="display: flex; gap: 10px;">
+        <button class="btn-cancel" onclick="closeUpiModal()" style="flex: 1; padding: 10px; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; font-weight: bold; cursor: pointer;">Cancel</button>
+        <button class="btn-update" onclick="markMaintenancePaid()" style="flex: 1; padding: 10px; background: #059669; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Mark Paid</button>
       </div>
     </div>
   </div>

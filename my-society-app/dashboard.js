@@ -1,11 +1,24 @@
-// Check Role on Page Load & Apply View only if role is resident
+// Check Role on Page Load & Apply View
 document.addEventListener('DOMContentLoaded', () => {
   const userRole = localStorage.getItem('userRole');
 
-  // Agar user resident hai, tabhi resident view apply hoga. 
-  // Admin ke liye yeh code nahi chalega aur purana dashboard hi dikhega!
+  // Agar user security guard hai, toh use turant visitors page par bhej do
+  if (userRole === 'security') {
+    window.location.href = 'visitors.html';
+    return;
+  }
+
+  // Agar user resident hai, tabhi resident view apply hoga.
   if (userRole === 'resident') {
     applyResidentView();
+  }
+  
+  // Load saved society name if available
+  const savedName = localStorage.getItem('societyName');
+  if (savedName) {
+    document.querySelectorAll('.societyNameText').forEach(el => {
+      el.textContent = savedName;
+    });
   }
   
   attachReceiptListeners();
@@ -32,13 +45,13 @@ function applyResidentView() {
     `;
   }
 
-  // 3. Action buttons ko Resident wale buttons se replace karein
+  // 3. Action buttons ko Resident wale buttons se replace karein (Report Complaint opens Helpdesk)
   const leftActions = document.querySelector('.left-actions');
   if (leftActions) {
     leftActions.innerHTML = `
       <button class="btn-red-action" style="background: #e11d48;" onclick="openExpenseModal()">- Add Expense</button>
-      <button class="btn-green-action" style="background: #059669;" onclick="alert('Redirecting to Payment Gateway...')">Pay Online (UPI)</button>
-      <button class="btn-red-action" style="background: #dc2626;" onclick="alert('Complaint box opened')">Report Complaint</button>
+      <button class="btn-green-action" style="background: #059669;" onclick="openUpiModal()">Pay Online (UPI)</button>
+      <button class="btn-red-action" style="background: #dc2626;" onclick="window.location.href='helpdesk.html'">Report Complaint</button>
     `;
   }
 
@@ -63,10 +76,13 @@ function closeEditModal() {
 function saveSocietyName() {
   const newName = document.getElementById('societyInput').value.trim();
   if (newName) {
+    localStorage.setItem('societyName', newName);
     document.querySelectorAll('.societyNameText').forEach(el => {
       el.innerText = newName;
     });
     closeEditModal();
+  } else {
+    alert('Please enter a valid society name');
   }
 }
 
@@ -226,6 +242,22 @@ function openNotifModal() {
 
 function closeNotifModal() {
   document.getElementById('notifModal').classList.remove('active');
+}
+
+// 8. UPI Payment Modal Functions
+function openUpiModal() {
+  const modal = document.getElementById('upiModal');
+  if (modal) modal.classList.add('active');
+}
+
+function closeUpiModal() {
+  const modal = document.getElementById('upiModal');
+  if (modal) modal.classList.remove('active');
+}
+
+function markMaintenancePaid() {
+  alert('Maintenance marked as paid successfully!');
+  closeUpiModal();
 }
 
 // Function to attach click triggers to expense table rows

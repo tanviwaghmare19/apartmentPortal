@@ -10,18 +10,38 @@ let chatMessagesData = [
     { sender: "Flat 201", text: "Plumber ka contact number Staff Payroll tab mein available hai waha se call kar sakte ho.", time: "10:25 AM" }
 ];
 
-window.onload = function() {
-    renderComplaints();
-    renderChatMessages();
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Check Role on Page Load
+  const userRole = localStorage.getItem('userRole');
+
+  // Agar security guard hai, toh use turant visitors page par bhej do
+  if (userRole === 'security') {
+    window.location.href = 'visitors.html';
+    return;
+  }
+
+  // Agar resident hai, toh subtitle update karein
+  if (userRole === 'resident') {
+    const subtitle = document.getElementById('helpdeskSubtitle');
+    if (subtitle) subtitle.innerText = 'Resident View (Flat 101)';
     
-    // Load saved society name if available
-    const savedName = localStorage.getItem('societyName');
-    if (savedName) {
-        document.querySelectorAll('.societyNameText').forEach(el => {
-            el.textContent = savedName;
-        });
-    }
-};
+    // Optional: Resident naye issues add nahi kar sakta toh button hide karein
+    // const addBtn = document.querySelector('.primary-btn');
+    // if(addBtn) addBtn.style.display = 'none';
+  }
+
+  // 2. Render Data
+  renderComplaints();
+  renderChatMessages();
+    
+  // 3. Load saved society name if available
+  const savedName = localStorage.getItem('societyName');
+  if (savedName) {
+    document.querySelectorAll('.societyNameText').forEach(el => {
+      el.textContent = savedName;
+    });
+  }
+});
 
 function renderComplaints() {
     const list = document.getElementById('complaints-list-container');
@@ -50,7 +70,7 @@ function renderChatMessages() {
                 <div class="msg-top">
                     <span class="msg-sender">${msg.sender}</span>
                     <span class="msg-time">${msg.time}</span>
-                </div>
+                    </div>
                 <p>${msg.text}</p>
             </div>
         `;
@@ -64,8 +84,11 @@ function handleSendChatMessage(e) {
     const msgText = input.value.trim();
     if (!msgText) return;
 
+    const userRole = localStorage.getItem('userRole');
+    const senderName = (userRole === 'resident') ? "Flat 101" : "Admin / Secretary";
+
     chatMessagesData.push({
-        sender: "Admin / Secretary",
+        sender: senderName,
         text: msgText,
         time: "Just Now"
     });
@@ -74,7 +97,8 @@ function handleSendChatMessage(e) {
     input.value = '';
 }
 
-function handleAddComplaint(e) {
+// Renamed to handleAddTicketForm to match HTML onsubmit
+function handleAddTicketForm(e) {
     e.preventDefault();
     const flatVal = document.getElementById('comp-flat').value;
     const titleVal = document.getElementById('comp-title').value;
@@ -103,6 +127,11 @@ function openModal(id) {
 function closeModal(id) {
     const el = document.getElementById(id);
     if (el) el.classList.add('hidden');
+}
+
+// Specific function for Add Ticket button
+function openAddTicketModal() {
+    openModal('modal-add-complaint');
 }
 
 /* --- Edit Society Name Functions --- */

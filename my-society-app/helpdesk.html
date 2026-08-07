@@ -1,148 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gokul Dham Society - Helpdesk & Resident Chat</title>
-    <!-- FontAwesome Icons CDN -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Link Dedicated CSS -->
-    <link rel="stylesheet" href="./helpdesk.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gokul Dham Society - Helpdesk & Resident Chat</title>
+  <!-- FontAwesome Icons CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- Link Dedicated CSS -->
+  <link rel="stylesheet" href="./helpdesk.css">
 </head>
 <body>
 
-    <!-- TOP NAVIGATION BAR -->
-    <header class="app-header navbar">
-        <div class="logo-area nav-left">
-            <div class="logo-icon">
-                <i class="fa-solid fa-building"></i>
-            </div>
-            <div class="brand-info">
-                <div class="title-row brand-title-row">
-                    <h1 class="societyNameText" style="font-size: 16px; font-weight: bold;">Gokul Dham Society</h1>
-                    <button class="edit-btn" onclick="openEditModal()" title="Edit Name">
-                        <svg class="icon" viewBox="0 0 24 24" style="width: 11px; height: 11px; fill: currentColor;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                    </button>
-                </div>
-                <p class="subtitle">Admin Management Portal</p>
-            </div>
+  <!-- TOP NAVIGATION BAR -->
+  <header class="app-header navbar">
+    <div class="logo-area nav-left">
+      <div class="logo-icon">
+        <i class="fa-solid fa-building"></i>
+      </div>
+      <div class="brand-info">
+        <div class="title-row brand-title-row">
+          <h1 class="societyNameText" style="font-size: 16px; font-weight: bold;">Gokul Dham Society</h1>
+          <button class="edit-btn" onclick="openEditModal()" title="Edit Name">
+            <svg class="icon" viewBox="0 0 24 24" style="width: 11px; height: 11px; fill: currentColor;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+          </button>
         </div>
-
-        <nav class="nav-links nav-menu">
-            <a href="dashboard.html" class="nav-btn nav-item">Dashboard</a>
-            <a href="flats.html" class="nav-btn nav-item">Flats & Ledger</a>
-            <a href="vehicle.html" class="nav-btn nav-item">Vehicle Parking</a>
-            <a href="helpdesk.html" class="nav-btn nav-item active">Helpdesk</a>
-            <a href="bookings.html" class="nav-btn nav-item">Bookings</a>
-            <a href="visitors.html" class="nav-btn nav-item">Gatekeeper Log</a>
-            <a href="staff.html" class="nav-btn nav-item">Staff Directory</a>
-        </nav>
-
-        <div style="display: flex; align-items: center;" class="nav-right">
-            <!-- Bell Icon with Click Event Added -->
-            <a href="#" class="bell-btn notification-icon" onclick="openNotificationModal(event)">
-                <i class="fa-solid fa-bell"></i>
-                <span class="badge">3</span>
-            </a>
-            <a href="index.html" class="logout-btn">
-                <i class="fa-solid fa-right-from-bracket"></i>
-            </a>
-        </div>
-    </header>
-
-    <!-- MAIN CONTAINER -->
-    <main class="main-container">
-        <div class="grid-layout">
-            
-            <!-- Left Column: Complaints & Tickets -->
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <h2>Society Complaints & Ticket System</h2>
-                        <p>Track & resolve resident issues</p>
-                    </div>
-                    <button onclick="openModal('modal-add-complaint')" class="primary-btn">+ Log New Issue</button>
-                </div>
-
-                <div class="complaints-list" id="complaints-list-container">
-                    <!-- Dynamic Items -->
-                </div>
-            </div>
-
-            <!-- Right Column: Resident Open Chat -->
-            <div class="card chat-card">
-                <div class="chat-header">
-                    <div class="chat-title-area">
-                        <h3><i class="fa-solid fa-comments chat-icon"></i> Resident Open Chat</h3>
-                        <span class="live-badge">Live Discussion</span>
-                    </div>
-                    <p class="chat-subtitle">Admin available na ho toh aapas mein discuss karein</p>
-                </div>
-
-                <div class="chat-messages" id="chat-messages-box">
-                    <!-- Dynamic Messages -->
-                </div>
-
-                <form onsubmit="handleSendChatMessage(event)" class="chat-form">
-                    <input type="text" id="chat-input-msg" placeholder="Write a message to neighbors..." required>
-                    <button type="submit" class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
-                </form>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- Modal: Add Complaint -->
-    <div id="modal-add-complaint" class="modal hidden">
-        <div class="modal-content">
-            <h3>Log New Helpdesk Ticket</h3>
-            <form onsubmit="handleAddComplaint(event)" class="modal-form">
-                <input type="text" id="comp-flat" placeholder="Flat No (e.g. Flat 203)" required>
-                <input type="text" id="comp-title" placeholder="Issue Title (e.g. Corridor Light Fault)" required>
-                <textarea id="comp-desc" placeholder="Details..." rows="3" required></textarea>
-                <div class="modal-actions">
-                    <button type="button" onclick="closeModal('modal-add-complaint')" class="cancel-btn">Cancel</button>
-                    <button type="submit" class="submit-btn">Submit Ticket</button>
-                </div>
-            </form>
-        </div>
+        <!-- Subtitle with ID added for dynamic Resident/Admin update -->
+        <p class="subtitle" id="helpdeskSubtitle">Admin Management Portal</p>
+      </div>
     </div>
 
-    <!-- Edit Society Name Modal -->
-    <div class="modal-overlay hidden" id="editModal">
-        <div class="modal-card">
-            <h3>Edit Society Name</h3>
-            <input type="text" id="societyInput" placeholder="Enter new society name">
-            <div class="modal-actions">
-                <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
-                <button class="btn-update" onclick="saveSocietyName()">Update Name</button>
-            </div>
-        </div>
-    </div>
+    <nav class="nav-links nav-menu">
+      <a href="dashboard.html" class="nav-btn nav-item">Dashboard</a>
+      <a href="flats.html" class="nav-btn nav-item">Flats & Ledger</a>
+      <a href="vehicle.html" class="nav-btn nav-item">Vehicle Parking</a>
+      <a href="helpdesk.html" class="nav-btn nav-item active">Helpdesk</a>
+      <a href="bookings.html" class="nav-btn nav-item">Bookings</a>
+      <a href="visitors.html" class="nav-btn nav-item">Gatekeeper Log</a>
+      <a href="staff.html" class="nav-btn nav-item">Staff Directory</a>
+    </nav>
 
-    <!-- Notification Modal Popup -->
-    <div id="modal-notifications" class="modal-overlay hidden">
-        <div class="modal-card notification-card" style="max-width: 450px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                <h3 style="display: flex; align-items: center; gap: 8px; font-size: 16px;"><i class="fa-solid fa-bell" style="color: #2563eb;"></i> Recent System Alerts</h3>
-                <span style="background-color: #eff6ff; color: #1d4ed8; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">3 Alerts</span>
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
-                <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px; font-size: 12px; color: #1e293b;">
-                    <strong>New Complaint:</strong> Water Leakage reported in Flat 302
-                </div>
-                <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: 8px; font-size: 12px; color: #166534;">
-                    <strong>Payment Received:</strong> Flat 101 paid ₹2,000 via UPI
-                </div>
-                <div style="background-color: #fefce8; border: 1px solid #fef08a; padding: 12px; border-radius: 8px; font-size: 12px; color: #854d0e;">
-                    <strong>Booking Alert:</strong> Community Hall requested for 15 Aug
-                </div>
-            </div>
-            <button onclick="closeNotificationModal()" class="submit-btn" style="width: 100%; padding: 10px; background-color: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; border-radius: 8px; font-weight: bold; cursor: pointer;">Close Notifications</button>
-        </div>
+    <div style="display: flex; align-items: center;" class="nav-right">
+      <!-- Bell Icon with Click Event -->
+      <a href="#" class="bell-btn notification-icon" onclick="openNotificationModal(event)">
+        <i class="fa-solid fa-bell"></i>
+        <span class="badge">3</span>
+      </a>
+      <a href="index.html" class="logout-btn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
     </div>
+  </header>
 
-    <!-- Link JS -->
-    <script src="helpdesk.js"></script>
+  <!-- MAIN CONTAINER -->
+  <main class="main-container">
+    <div class="grid-layout">
+      
+      <!-- Left Column: Complaints & Tickets -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Society Complaints & Ticket System</h2>
+            <p>Track & resolve resident issues</p>
+          </div>
+          <button onclick="openAddTicketModal()" class="primary-btn">+ Log New Issue</button>
+        </div>
+
+        <div class="complaints-list" id="complaints-list-container">
+          <!-- Dynamic Items will be inserted here by JS -->
+        </div>
+      </div>
+
+      <!-- Right Column: Resident Open Chat -->
+      <div class="card chat-card">
+        <div class="chat-header">
+          <div class="chat-title-area">
+            <h3><i class="fa-solid fa-comments chat-icon"></i> Resident Open Chat</h3>
+            <span class="live-badge">Live Discussion</span>
+          </div>
+          <p class="chat-subtitle">Admin available na ho toh aapas mein discuss karein</p>
+        </div>
+
+        <div class="chat-messages" id="chat-messages-box">
+          <!-- Dynamic Messages will be inserted here by JS -->
+        </div>
+
+        <form onsubmit="handleSendChatMessage(event)" class="chat-form">
+          <input type="text" id="chat-input-msg" placeholder="Write a message to neighbors..." required>
+          <button type="submit" class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Modal: Add Complaint -->
+  <div id="modal-add-complaint" class="modal-overlay hidden">
+    <div class="modal-card">
+      <h3>Log New Helpdesk Ticket</h3>
+      <form onsubmit="handleAddTicketForm(event)" class="modal-form">
+        <input type="text" id="comp-flat" placeholder="Flat No (e.g. Flat 203)" required>
+        <input type="text" id="comp-title" placeholder="Issue Title (e.g. Corridor Light Fault)" required>
+        <textarea id="comp-desc" placeholder="Details..." rows="3" required></textarea>
+        <div class="modal-actions">
+          <button type="button" onclick="closeModal('modal-add-complaint')" class="btn-cancel">Cancel</button>
+          <button type="submit" class="btn-update" style="background: #f97316;">Submit Ticket</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Society Name Modal -->
+  <div class="modal-overlay hidden" id="editModal">
+    <div class="modal-card">
+      <h3>Edit Society Name</h3>
+      <input type="text" id="societyInput" placeholder="Enter new society name">
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeEditModal()">Cancel</button>
+        <button class="btn-update" onclick="saveSocietyName()">Update Name</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Modal Popup -->
+  <div id="modal-notifications" class="modal-overlay hidden">
+    <div class="modal-card notification-card" style="max-width: 450px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="display: flex; align-items: center; gap: 8px; font-size: 16px;"><i class="fa-solid fa-bell" style="color: #2563eb;"></i> Recent System Alerts</h3>
+        <span style="background-color: #eff6ff; color: #1d4ed8; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">3 Alerts</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px; font-size: 12px; color: #1e293b;">
+          <strong>New Complaint:</strong> Water Leakage reported in Flat 302
+        </div>
+        <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: 8px; font-size: 12px; color: #166534;">
+          <strong>Payment Received:</strong> Flat 101 paid ₹2,000 via UPI
+        </div>
+        <div style="background-color: #fefce8; border: 1px solid #fef08a; padding: 12px; border-radius: 8px; font-size: 12px; color: #854d0e;">
+          <strong>Booking Alert:</strong> Community Hall requested for 15 Aug
+        </div>
+      </div>
+      <button onclick="closeNotificationModal()" class="submit-btn" style="width: 100%; padding: 10px; background-color: #f1f5f9; color: #1e293b; border: 1px solid #cbd5e1; border-radius: 8px; font-weight: bold; cursor: pointer;">Close Notifications</button>
+    </div>
+  </div>
+
+  <!-- Link JS -->
+  <script src="helpdesk.js"></script>
 </body>
 </html>
