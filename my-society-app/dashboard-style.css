@@ -683,3 +683,19 @@ td {
   font-size: 13px;
   cursor: pointer;
 }
+
+/* Update Name Button Blue Styling */
+.modal-card .btn-update {
+  background-color: #2563eb !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.modal-card .btn-update:hover {
+  background-color: #1d4ed8 !important;
+}
