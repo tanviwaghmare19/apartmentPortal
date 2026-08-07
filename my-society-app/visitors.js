@@ -14,8 +14,9 @@ window.onload = function() {
         });
     }
 
-    // Role check for Resident View
+    // Role check for Resident & Security View
     const userRole = localStorage.getItem('userRole');
+    
     if (userRole === 'resident') {
         // Subtitle ko Resident View me badlne ke liye
         const subtitle = document.querySelector('.brand-info p');
@@ -31,6 +32,17 @@ window.onload = function() {
         // New Entry button ko hide karne ke liye
         const newEntryBtn = document.querySelector('.primary-btn');
         if (newEntryBtn) newEntryBtn.style.display = 'none';
+    } 
+    else if (userRole === 'security') {
+        // Security Portal Subtitle
+        const subtitle = document.querySelector('.brand-info p');
+        if (subtitle) subtitle.textContent = "Security Gatekeeper Portal";
+
+        // Navigation menu ke baaki saare items hide kar dein taaki sirf Gatekeeper Log bache
+        const navMenu = document.querySelector('.nav-menu');
+        if (navMenu) {
+            navMenu.innerHTML = `<a href="visitors.html" class="nav-item active">Gatekeeper Log</a>`;
+        }
     }
 };
 
